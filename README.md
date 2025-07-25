@@ -4,9 +4,8 @@
 **Master the AI and cloud cost-speed-quality tradeoff with unified analytics.**
 
 [![GitHub last commit](https://img.shields.io/github/last-commit/narevai/narev)](https://github.com/narevai/narev/commits)
-[![GitHub repo size](https://img.shields.io/github/repo-size/narevai/narev)](https://github.com/narevai/narev)
-[![Image size](https://ghcr-badge.egpl.dev/narevai/narev/size)](https://github.com/narevai/narev/pkgs/container/narev)
-[![Latest version](https://ghcr-badge.egpl.dev/narevai/narev/latest_tag?trim=major&label=latest)](https://github.com/narevai/narev/pkgs/container/narev)
+[![Latest tag](https://img.shields.io/github/v/tag/narevai/narev?label=latest)](https://github.com/narevai/narev/tags)
+[![Code Size](https://img.shields.io/github/languages/code-size/narevai/narev)](https://github.com/narevai/narev)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
 Narev is an open source, self-hosted FinOps platform for analyzing and optimizing your AI and cloud spend. It unifies cost and usage data from AWS, Azure, GCP, and OpenAI, providing real-time dashboards, FOCUS-compliant analytics, and actionable recommendations—all while keeping your data private and under your control.

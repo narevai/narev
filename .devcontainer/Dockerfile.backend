@@ -1,0 +1,36 @@
+FROM python:3.12-slim-bookworm
+
+# Install minimal required system dependencies + GRAPHVIZ
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git \
+    build-essential \
+    curl \
+    jq \
+    netcat-openbsd \
+    make \
+    graphviz \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set environment variables
+ENV PYTHONPATH=/workspace/backend \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
+# Copy requirements files for installation
+COPY requirements.txt requirements-dev.txt /tmp/
+
+# Install dependencies
+RUN pip install uv && \
+    uv venv /opt/venv
+
+ENV PATH="/opt/venv/bin:$PATH"
+
+RUN uv pip install \
+    -r /tmp/requirements.txt \
+    -r /tmp/requirements-dev.txt
+
+# Set working directory to where code will be mounted
+WORKDIR /workspace/backend
+
+# The dev.sh script will come from the mounted volume
+CMD ["bash", "dev.sh"]

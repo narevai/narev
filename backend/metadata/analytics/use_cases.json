@@ -1,0 +1,280 @@
+{
+  "01_resource_rate": {
+    "name": "Calculate average rate of a component resource",
+    "endpoint": "/analytics/resource-rate",
+    "method": "GET",
+    "status": "not_implemented",
+    "context": "Aggregate usage and pricing across multiple SKUs to compute the average cost per core for each virtual machine series by region. This common denominator supports benchmarking when billed and consumed units differ.",
+    "related_personas": ["Engineering", "FinOps Practitioner"],
+    "related_capabilities": ["Forecasting", "Planning & Estimating", "Reporting & Analytics", "Unit Economics"],
+    "focus_columns": ["provider_name", "service_name", "pricing_unit", "region_name", "sku_price_details", "effective_cost", "charge_period_start", "charge_period_end"],
+    "example_filters": {
+      "resource_type": "Virtual Machine",
+      "aggregation": "daily"
+    }
+  },
+    "02_resource_usage": {
+    "name": "Quantify usage of a component resource",
+    "endpoint": "/analytics/resource-usage",
+    "method": "GET",
+    "status": "implemented",
+    "context": "Capture daily aggregate usage of component resources, such as core hours or gigabytes, when Providers bill by virtual machines or quantity provisioned. This approach allows FinOps Practitioners to account for scenarios such as analyzing usage across auto-scaled compute services when instantaneous APIs cannot capture historical trends.",
+    "related_personas": ["Engineering", "FinOps Practitioner"],
+    "related_capabilities": ["Planning & Estimating", "Unit Economics", "Reporting & Analytics", "Allocation"],
+    "focus_columns": ["provider_name", "service_name", "pricing_unit", "region_name", "sku_price_details", "charge_period_start", "charge_period_end"],
+    "example_filters": {
+        "group_by": "resource"
+    }
+  },
+
+  "03_unit_economics": {
+    "name": "Calculate unit economics",
+    "endpoint": "/analytics/unit-economics",
+    "method": "GET",
+    "status": "implemented",
+    "context": "Calculate unit-cost metrics (e.g., cost per GB of storage) to expose cost density and target optimizations that lower overall spend. Analyze cost efficiency by breaking down total costs into per-unit metrics.",
+    "related_personas": ["Engineering", "Finance", "FinOps Practitioner", "Leadership"],
+    "related_capabilities": ["Benchmarking", "Reporting & Analytics", "Unit Economics", "Forecasting", "Planning & Estimating"],
+    "focus_columns": ["charge_period_start", "billed_cost", "consumed_quantity", "consumed_unit", "charge_description"],
+    "example_filters": {
+      "unit_type": "GB",
+      "charge_description_filter": "transfer"
+    }
+  },
+  "04_virtual_currency_target": {
+    "name": "Determine target of virtual currency usage",
+    "endpoint": "/analytics/virtual-currency-target",
+    "method": "GET",
+    "status": "implemented",
+    "context": "Identify and rank the top charge categories driving virtual-currency consumption to target optimization efforts. Analyze which services and charge types consume the most virtual currency.",
+    "related_personas": ["Engineering", "FinOps Practitioner"],
+    "related_capabilities": ["Allocation", "Invoicing & Chargeback", "Planning & Estimating", "Rate Optimization", "Reporting & Analytics"],
+    "focus_columns": ["provider_name", "publisher_name", "service_name", "charge_description", "effective_cost", "pricing_currency"],
+    "example_filters": {
+      "pricing_currency": "USD",
+      "limit": 10
+    }
+  },
+  "05_effective_cost_by_currency": {
+    "name": "Analyze effective cost by pricing currency",
+    "endpoint": "/analytics/effective-cost-by-currency",
+    "method": "GET",
+    "status": "implemented",
+    "context": "Break down the effective cost by each pricing currency to surface regional price differences and exchange-rate impacts. Analyze cost distribution across different currencies.",
+    "related_personas": ["Finance", "FinOps Practitioner"],
+    "related_capabilities": ["Allocation", "Budgeting", "Forecasting", "Planning & Estimating", "Reporting & Analytics"],
+    "focus_columns": ["provider_name", "publisher_name", "service_name", "pricing_currency", "effective_cost", "charge_period_start", "charge_period_end"],
+    "example_filters": {
+      "include_exchange_rates": false
+    }
+  },
+  "06_virtual_currency_purchases": {
+    "name": "Analyze purchase of virtual currency",
+    "endpoint": "/analytics/virtual-currency-purchases",
+    "method": "GET",
+    "status": "implemented",
+    "context": "Analyze virtual-currency purchase patterns (e.g., upfront) and actively monitor burn down to prevent overage charges. Track purchase timing and quantities.",
+    "related_personas": ["Finance", "FinOps Practitioner", "Procurement"],
+    "related_capabilities": ["Allocation", "Budgeting", "Forecasting", "Invoicing & Chargeback", "Planning & Estimating"],
+    "focus_columns": ["provider_name", "publisher_name", "charge_description", "pricing_unit", "billing_currency", "pricing_quantity", "billed_cost", "charge_period_start", "charge_category"],
+    "example_filters": {
+      "pricing_unit": "Credits",
+      "group_by": "service"
+    }
+  },
+  "07_contracted_savings": {
+    "name": "Determine contracted savings by virtual currency",
+    "endpoint": "/analytics/contracted-savings",
+    "method": "GET",
+    "status": "implemented",
+    "context": "Compare the virtual currency discounted rate to the virtual currency list price to determine the difference, as contracts can lower the virtual-currency price of certain operations.",
+    "related_personas": ["Finance", "FinOps Practitioner"],
+    "related_capabilities": ["Planning & Estimating", "Reporting & Analytics", "Unit Economics", "Rate Optimization", "Forecasting"],
+    "focus_columns": ["service_name", "service_subcategory", "charge_description", "billing_currency", "pricing_currency", "list_unit_price", "contracted_unit_price", "list_cost", "contracted_cost", "commitment_discount_type", "commitment_discount_status"],
+    "example_filters": {
+      "commitment_type": "reserved_instances"
+    }
+  },
+  "08_tag_coverage": {
+    "name": "Analyze tag coverage",
+    "endpoint": "/analytics/tag-coverage",
+    "method": "GET",
+    "status": "implemented",
+    "context": "Analyzing the amount of costs for a provider that have been tagged with a specific tag can enable the FinOps practitioner to check the amount of costs being allocated via tags.",
+    "related_personas": ["Engineering", "FinOps Practitioner"],
+    "related_capabilities": ["Allocation", "Reporting & Analytics"],
+    "focus_columns": ["charge_period_start", "charge_period_end", "tags", "effective_cost", "provider_name"],
+    "example_filters": {
+      "required_tags": ["environment", "team", "project"]
+    }
+  },
+  "09_sku_metered_costs": {
+    "name": "Analyze the different metered costs for a particular SKU",
+    "endpoint": "/analytics/sku-metered-costs",
+    "method": "GET",
+    "status": "implemented",
+    "context": "Understanding the individual metered costs of a particular SKU can help assist FinOps practitioners understand the cost breakdown of usage of a select cloud resource. Especially in cases where a SKU has a few component charges like (Usage hours, Throughput, API requests, etc)",
+    "related_personas": ["Finance", "FinOps Practitioner", "Procurement", "Product"],
+    "related_capabilities": ["Reporting & Analytics", "Forecasting", "Workload Optimization"],
+    "focus_columns": ["provider_name", "charge_period_start", "charge_period_end", "sku_id", "sku_price_id", "pricing_unit", "list_unit_price", "pricing_quantity", "list_cost", "effective_cost"],
+    "example_filters": {
+      "sku_id": "example-sku-123",
+      "limit": 100
+    }
+  },
+    "10_service_category_breakdown": {
+    "name": "Report costs by service category and subcategory",
+    "endpoint": "/analytics/service-category-breakdown",
+    "method": "GET",
+    "status": "implemented",
+    "context": "Understanding costs across providers, billing periods, and service categories (Analytics, Compute, Database, Storage, etc.) and service subcategories (Virtual Machines, Relational Databases, Content Delivery, etc) provides valuable insight into total costs.",
+    "related_personas": ["Finance", "FinOps Practitioner", "Leadership"],
+    "related_capabilities": ["Reporting & Analytics", "Budgeting", "Forecasting", "Allocation"],
+    "focus_columns": ["provider_name", "billing_currency", "charge_period_start", "service_category", "service_subcategory", "billed_cost"],
+    "example_filters": {
+        "provider_name": "AWS",
+        "service_category": "Compute"
+    }
+  },
+    "11_capacity_reservation_analysis": {
+    "name": "Analyze capacity reservations on compute costs",
+    "endpoint": "/analytics/capacity-reservation-analysis",
+    "method": "GET",
+    "status": "implemented",
+    "context": "Compute costs are often the highest spend area in a cloud bill, it may be useful for FinOps practitioners and Engineers to understand the volume of costs that are coming from reserved commitments either used or unused compared to the amount of compute costs that have no reservations applied. Capacity reservations can be very useful for Engineering to help them ensure capacity is available for their services when it is needed, however when reducing usage and rightsizing workloads capacity reservations need to be adjusted at the same time.",
+    "related_personas": ["Engineering", "FinOps Practitioner"],
+    "related_capabilities": ["Reporting & Analytics", "Rate Optimization", "Anomaly Management"],
+    "focus_columns": ["charge_period_start", "charge_period_end", "billed_cost", "effective_cost", "service_category", "provider_name", "billing_account_id", "commitment_discount_id", "commitment_discount_status"],
+    "example_filters": {
+        "provider_name": "AWS",
+        "billing_account_id": "123456789"
+    }
+  },
+    "12_unused_capacity": {
+    "name": "Identify unused capacity reservations",
+    "endpoint": "/analytics/unused-capacity",
+    "method": "GET",
+    "status": "implemented",
+    "context": "Identify all data in a time period where CapacityReservationStatus is 'unused' thus identifying capacity reservations that aren't used and enabling the Practitioner to take action on either cancelling the reservation (if able), working with other personas on a workload that could use the reservation, or performing informed ignore (knowing it is there but ignoring it because there is nothing one can do).",
+    "related_personas": ["Engineering", "FinOps Practitioner", "Product"],
+    "related_capabilities": ["Anomaly Management", "Rate Optimization"],
+    "focus_columns": ["charge_period_start", "charge_period_end", "provider_name", "billing_account_id", "commitment_discount_id", "commitment_discount_status", "billed_cost", "effective_cost"],
+    "example_filters": {
+        "provider_name": "AWS",
+        "billing_account_id": "123456789"
+    }
+  },
+    "13_refunds_by_subaccount": {
+    "name": "Report refunds by subaccount within a billing period",
+    "endpoint": "/analytics/refunds-by-subaccount",
+    "method": "GET",
+    "status": "implemented",
+    "context": "Use FOCUS data to identify refunds across multiple providers, billing accounts, and subaccounts.",
+    "related_personas": ["FinOps Practitioner"],
+    "related_capabilities": ["Allocation"],
+    "focus_columns": ["provider_name", "billing_account_id", "service_category", "billing_period_start", "sub_account_id", "sub_account_name", "charge_class", "billed_cost"],
+    "example_filters": {
+        "provider_name": "AWS",
+        "service_category": "Compute"
+    }
+  },
+    "14_recurring_commitment_charges": {
+    "name": "Report recurring charges for commitment-based discounts over a period",
+    "endpoint": "/analytics/recurring-commitment-charges",
+    "method": "GET",
+    "status": "implemented",
+    "context": "As a Finance person, I want to understand the recurring costs of commitment based discounts over a period of time to improve forecasting.",
+    "related_personas": ["Finance"],
+    "related_capabilities": ["Forecasting", "Budgeting", "Reporting & Analytics"],
+    "focus_columns": ["charge_frequency", "billing_period_start", "billed_cost", "commitment_discount_id", "commitment_discount_name", "commitment_discount_type"],
+    "example_filters": {
+        "charge_frequency": "Recurring",
+        "commitment_discount_type": "SavingsPlans"
+    }
+  },
+    "15_service_cost_analysis": {
+    "name": "Analyze costs by service name",
+    "endpoint": "/analytics/service-cost-analysis",
+    "method": "GET",
+    "status": "implemented",
+    "context": "Analyzing service-level spending trends over a time period can expose expected and unexpected growth in the consumption of a cloud service, and is a good way for the FinOps team to prioritize usage and rate optimization conversations with product, engineering, and finance leaders within the organization.",
+    "related_personas": ["FinOps Practitioner"],
+    "related_capabilities": ["Anomaly Management"],
+    "focus_columns": ["billed_cost", "billing_period_start", "provider_name", "service_name", "sub_account_id", "sub_account_name", "effective_cost"],
+    "example_filters": {
+        "service_name": "Amazon EC2",
+        "provider_name": "AWS"
+    }
+  },
+    "16_spending_by_billing_period": {
+    "name": "Report spending across billing periods for a provider by service category",
+    "endpoint": "/analytics/spending-by-billing-period",
+    "method": "GET",
+    "status": "implemented",
+    "context": "Understanding costs across providers, billing periods, billing accounts, and service categories (Analytics, Compute, Database, Storage, etc.) provides valuable insight into total costs and can be used by Procurement to focus negotiations for specific providers with details on the billing accounts that are driving costs. to focus negotiations toward highest costing items.",
+    "related_personas": ["Procurement"],
+    "related_capabilities": ["Reporting & Analytics"],
+    "focus_columns": ["provider_name", "billing_account_id", "billing_account_name", "billing_currency", "billing_period_start", "service_category", "service_name", "charge_period_start", "charge_period_end", "billed_cost"],
+    "example_filters": {
+        "provider_name": "AWS",
+        "service_category": "Compute"
+    }
+  },
+    "17_service_costs_by_region": {
+    "name": "Analyze service costs by region",
+    "endpoint": "/analytics/service-costs-by-region",
+    "method": "GET",
+    "status": "implemented",
+    "context": "Analyzing Service level spending trends over a time period can expose expected and unexpected growth in the consumption of various services, by region, across all providers and is a good way for the FinOps team to prioritize usage and rate optimization conversations with product, engineering and finance leaders within the organization.",
+    "related_personas": ["FinOps Practitioner"],
+    "related_capabilities": ["Anomaly Management"],
+    "focus_columns": ["effective_cost", "billing_period_start", "provider_name", "region_id", "service_name"],
+    "example_filters": {
+        "provider_name": "AWS",
+        "region_id": "us-east-1"
+    }
+  },
+    "18_service_costs_by_subaccount": {
+    "name": "Report service costs by providers subaccount",
+    "endpoint": "/analytics/service-costs-by-subaccount",
+    "method": "GET",
+    "status": "implemented",
+    "context": "Organizations wants to negotiate private pricing for a particular workload, a subaccount that carries specialized workloads, or their entire footprint. The cost metric used must amortize up-front and recurring fees to get an accurate view of the effective cost.",
+    "related_personas": ["Finance"],
+    "related_capabilities": ["Reporting & Analytics"],
+    "focus_columns": ["provider_name", "service_name", "sub_account_id", "charge_period_start", "effective_cost", "billing_period_start", "billing_period_end"],
+    "example_filters": {
+        "sub_account_id": "123456789",
+        "provider_name": "AWS",
+        "service_name": "Amazon EC2"
+    }
+  },
+    "19_service_cost_trends": {
+    "name": "Analyze service costs month over month",
+    "endpoint": "/analytics/service-cost-trends",
+    "method": "GET",
+    "status": "implemented",
+    "context": "Analyzing service-level spending trends over a time period can expose expected and unexpected growth in the consumption of various services across all providers and is a good way for the FinOps team to prioritize usage and rate optimization conversations with product, engineering and finance leaders within the organization.",
+    "related_personas": ["FinOps Practitioner"],
+    "related_capabilities": ["Reporting & Analytics"],
+    "focus_columns": ["charge_period_start", "provider_name", "service_name", "effective_cost"],
+    "example_filters": {
+        "trend_period": "monthly",
+        "provider_name": "AWS"
+    }
+  },
+    "20_application_cost_trends": {
+    "name": "Report application cost month over month",
+    "endpoint": "/analytics/application-cost-trends",
+    "method": "GET",
+    "status": "implemented",
+    "context": "As an application owner or engineering team I want to track the month over month costs of my application.",
+    "related_personas": ["Engineering", "Product"],
+    "related_capabilities": ["Forecasting", "Reporting & Analytics"],
+    "focus_columns": ["billing_period_start", "tags", "effective_cost", "charge_period_start"],
+    "example_filters": {
+        "tag_key": "application",
+        "trend_period": "monthly"
+    }
+  }
+}

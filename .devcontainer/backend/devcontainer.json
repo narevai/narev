@@ -1,0 +1,41 @@
+{
+    "name": "Narev Backend Development",
+    "dockerComposeFile": "../docker-compose.yaml",
+    "service": "backend",
+    "workspaceFolder": "/workspace",
+    "shutdownAction": "stopCompose",
+    
+    "customizations": {
+      "vscode": {
+        "extensions": [
+          "ms-python.python",
+          "charliermarsh.ruff",
+          "esbenp.prettier-vscode"
+        ],
+        "settings": {
+          "python.defaultInterpreterPath": "/usr/local/bin/python",
+          "python.linting.pylintEnabled": false,
+          "python.linting.flake8Enabled": false,
+          "python.formatting.provider": "none",
+          "[python]": {
+            "editor.defaultFormatter": "charliermarsh.ruff",
+            "editor.formatOnSave": true,
+            "editor.codeActionsOnSave": {
+              "source.fixAll.ruff": "explicit",
+              "source.organizeImports.ruff": "explicit"
+            }
+          }
+        }
+      }
+    },
+  
+    "forwardPorts": [5173, 8000],
+    "portsAttributes": {
+      "5173": {
+        "label": "Frontend (Vite)"
+      },
+      "8000": {
+        "label": "Backend API"
+      }
+    }
+  }

@@ -1,0 +1,49 @@
+{
+  "object": "page",
+  "data": [
+    {
+      "object": "bucket",
+      "start_time": 1751414400,
+      "end_time": 1751500800,
+      "results": []
+    },
+    {
+      "object": "bucket",
+      "start_time": 1751500800,
+      "end_time": 1751587200,
+      "results": []
+    },
+    {
+      "object": "bucket",
+      "start_time": 1751587200,
+      "end_time": 1751673600,
+      "results": []
+    },
+    {
+      "object": "bucket",
+      "start_time": 1751673600,
+      "end_time": 1751760000,
+      "results": []
+    },
+    {
+      "object": "bucket",
+      "start_time": 1751760000,
+      "end_time": 1751846400,
+      "results": []
+    },
+    {
+      "object": "bucket",
+      "start_time": 1751846400,
+      "end_time": 1751932800,
+      "results": []
+    },
+    {
+      "object": "bucket",
+      "start_time": 1751932800,
+      "end_time": 1752019200,
+      "results": []
+    }
+  ],
+  "has_more": false,
+  "next_page": null
+}

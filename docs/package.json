@@ -1,0 +1,17 @@
+{
+  "name": "narev-docs",
+  "version": "0.1.0",
+  "description": "Documentation for Narev - FinOps Cost Explorer",
+  "scripts": {
+    "dev": "vitepress dev --port 5174 --host 0.0.0.0",
+    "build": "vitepress build",
+    "preview": "vitepress preview --port 5174 --host 0.0.0.0"
+  },
+  "devDependencies": {
+    "vitepress": "2.0.0-alpha.8",
+    "vitepress-sidebar": "^1.32.1"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

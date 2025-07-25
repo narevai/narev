@@ -1,0 +1,9 @@
+[schema]
+# Don't modify schema - use existing tables as-is
+schema_contract = "freeze"
+
+
+[normalize]
+# Use DLT internal columns that are already in schema
+add_dlt_load_id = true
+add_dlt_id = true

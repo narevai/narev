@@ -1,0 +1,52 @@
+{
+  "name": "Narev Documentation",
+  "dockerComposeFile": "../docker-compose.yaml",
+  "service": "docs",
+  "workspaceFolder": "/workspace/docs",
+  "shutdownAction": "stopCompose",
+  
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.vscode-typescript-next",
+        "esbenp.prettier-vscode",
+        "yzhang.markdown-all-in-one",
+        "DavidAnson.vscode-markdownlint",
+        "ms-vscode.vscode-json",
+        "bierner.markdown-preview-github-styles",
+        "ms-vscode.vscode-yaml"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "[markdown]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode",
+          "editor.wordWrap": "on",
+          "editor.quickSuggestions": {
+            "comments": "off",
+            "strings": "off",
+            "other": "off"
+          }
+        },
+        "markdown.preview.fontSize": 14,
+        "markdown.preview.lineHeight": 1.6,
+        "markdownlint.config": {
+          "MD033": false,
+          "MD041": false
+        }
+      }
+    }
+  },
+
+  "forwardPorts": [5174, 8000],
+  "portsAttributes": {
+    "5174": {
+      "label": "Documentation (VitePress)"
+    },
+    "8000": {
+      "label": "Backend API"
+    }
+  },
+  
+  "postCreateCommand": "pnpm install"
+}

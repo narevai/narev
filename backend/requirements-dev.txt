@@ -1,0 +1,9 @@
+# Development dependencies
+ruff>=0.1.0
+pytest>=7.0.0
+pytest-asyncio>=0.21.0
+httpx>=0.24.0
+
+# Additional testing utilities
+pytest-cov>=4.0.0  # for coverage reports
+sf-hamilton[visualization]>=1.88.0  # for sync service tests

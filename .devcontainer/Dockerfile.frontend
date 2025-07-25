@@ -1,0 +1,18 @@
+FROM node:20-bullseye-slim
+
+WORKDIR /app/frontend
+
+# Update packages and install basic dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    bash \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install pnpm globally
+RUN npm install -g pnpm
+
+EXPOSE 5173
+
+# Keep the container running (don't start dev server automatically)
+CMD ["sleep", "infinity"]

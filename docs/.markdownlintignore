@@ -1,0 +1,4 @@
+README.md
+CHANGELOG.md
+node_modules/**
+.vitepress/dist/**

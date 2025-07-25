@@ -1,0 +1,71 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "narev-api"
+version = "0.1.0"
+description = "NarevAI - FOCUS billing data analyzer"
+requires-python = ">=3.12,<3.13"
+
+[tool.setuptools.packages.find]
+include = ["app*", "focus*", "pipeline*", "providers*"]
+exclude = ["tests*", "temp*", "logs*", "data*", "migrations*", "metadata*"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 88
+src = ["."]
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings  
+    "F",    # pyflakes
+    "I",    # isort
+    "B",    # flake8-bugbear
+    "C4",   # flake8-comprehensions
+    "UP",   # pyupgrade
+]
+ignore = [
+    "E501", "B008"  # line too long (handled by formatter)
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.coverage.run]
+source = ["."]
+omit = [
+    "tests/*",
+    "*/test_*.py",
+    "*/__pycache__/*",
+    "*/venv/*",
+    "*/env/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+]
+show_missing = true
+
+[tool.pytest.ini_options]
+markers = [
+    "integration: marks tests as integration tests",
+]
+filterwarnings = [
+    "ignore:The default datetime adapter is deprecated.*:DeprecationWarning:sqlalchemy.engine.default",
+]
+
+[dependency-groups]
+dev = [
+    "sf-hamilton[visualization]>=1.88.0",
+]

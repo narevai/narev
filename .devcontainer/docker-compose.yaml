@@ -1,0 +1,56 @@
+services:
+  frontend:
+    build:
+      context: ../frontend
+      dockerfile: ../.devcontainer/Dockerfile.frontend
+    # Don't start dev server automatically - let VS Code handle it
+    command: sleep infinity
+    env_file: "../.env"
+    depends_on:
+      - backend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ../frontend:/app/frontend
+      - frontend_node_modules:/app/frontend/node_modules
+    networks:
+      - narev-network
+
+  backend:
+    build:
+      context: ../backend
+      dockerfile: ../.devcontainer/Dockerfile.backend
+    command: bash dev.sh
+    env_file: "../.env"
+    ports:
+      - "8000:8000"
+    volumes:
+      - ..:/workspace
+      - ../frontend/dist:/workspace/frontend/dist
+      - pip_cache:/root/.cache/pip
+      - ../backend/data:/workspace/backend/data
+      - ../backend/logs:/workspace/backend/logs
+    networks:
+      - narev-network
+
+  docs:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile.docs
+    command: sleep infinity
+    ports:
+      - "5174:5174"
+    volumes:
+      - ../docs:/workspace/docs
+      - docs_node_modules:/workspace/docs/node_modules
+    networks:
+      - narev-network
+
+volumes:
+  frontend_node_modules:
+  pip_cache:
+  docs_node_modules:
+
+networks:
+  narev-network:
+    driver: bridge

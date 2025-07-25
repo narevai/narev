@@ -1,0 +1,136 @@
+{
+  "object": "page",
+  "data": [
+    {
+      "object": "bucket",
+      "start_time": 1751414400,
+      "end_time": 1751500800,
+      "results": [
+        {
+          "object": "organization.usage.completions.result",
+          "input_tokens": 8,
+          "output_tokens": 5,
+          "num_model_requests": 1,
+          "project_id": null,
+          "user_id": null,
+          "api_key_id": "key_Aq2GbGOoECBr9KiI",
+          "model": "gpt-4o-mini-2024-07-18",
+          "batch": null,
+          "input_cached_tokens": 0,
+          "input_audio_tokens": 0,
+          "output_audio_tokens": 0
+        },
+        {
+          "object": "organization.usage.completions.result",
+          "input_tokens": 24,
+          "output_tokens": 15,
+          "num_model_requests": 3,
+          "project_id": null,
+          "user_id": null,
+          "api_key_id": "key_rRzA5SzaMoaPcHns",
+          "model": "gpt-4o-mini-2024-07-18",
+          "batch": null,
+          "input_cached_tokens": 0,
+          "input_audio_tokens": 0,
+          "output_audio_tokens": 0
+        },
+        {
+          "object": "organization.usage.completions.result",
+          "input_tokens": 24,
+          "output_tokens": 15,
+          "num_model_requests": 3,
+          "project_id": null,
+          "user_id": null,
+          "api_key_id": "key_EHyfuGdb34t1i47h",
+          "model": "gpt-4o-mini-2024-07-18",
+          "batch": null,
+          "input_cached_tokens": 0,
+          "input_audio_tokens": 0,
+          "output_audio_tokens": 0
+        }
+      ]
+    },
+    {
+      "object": "bucket",
+      "start_time": 1751500800,
+      "end_time": 1751587200,
+      "results": [
+        {
+          "object": "organization.usage.completions.result",
+          "input_tokens": 28,
+          "output_tokens": 618,
+          "num_model_requests": 1,
+          "project_id": null,
+          "user_id": null,
+          "api_key_id": "key_zesDKPanu7AZ9Wak",
+          "model": "gpt-4.1-2025-04-14",
+          "batch": null,
+          "input_cached_tokens": 0,
+          "input_audio_tokens": 0,
+          "output_audio_tokens": 0
+        }
+      ]
+    },
+    {
+      "object": "bucket",
+      "start_time": 1751587200,
+      "end_time": 1751673600,
+      "results": [
+        {
+          "object": "organization.usage.completions.result",
+          "input_tokens": 28,
+          "output_tokens": 794,
+          "num_model_requests": 1,
+          "project_id": null,
+          "user_id": null,
+          "api_key_id": "key_8BhWiFmlWIXVW32P",
+          "model": "gpt-4.1-2025-04-14",
+          "batch": null,
+          "input_cached_tokens": 0,
+          "input_audio_tokens": 0,
+          "output_audio_tokens": 0
+        },
+        {
+          "object": "organization.usage.completions.result",
+          "input_tokens": 29,
+          "output_tokens": 389,
+          "num_model_requests": 1,
+          "project_id": null,
+          "user_id": null,
+          "api_key_id": "key_8BhWiFmlWIXVW32P",
+          "model": "gpt-3.5-turbo-0125",
+          "batch": null,
+          "input_cached_tokens": 0,
+          "input_audio_tokens": 0,
+          "output_audio_tokens": 0
+        }
+      ]
+    },
+    {
+      "object": "bucket",
+      "start_time": 1751673600,
+      "end_time": 1751760000,
+      "results": []
+    },
+    {
+      "object": "bucket",
+      "start_time": 1751760000,
+      "end_time": 1751846400,
+      "results": []
+    },
+    {
+      "object": "bucket",
+      "start_time": 1751846400,
+      "end_time": 1751932800,
+      "results": []
+    },
+    {
+      "object": "bucket",
+      "start_time": 1751932800,
+      "end_time": 1752019200,
+      "results": []
+    }
+  ],
+  "has_more": false,
+  "next_page": null
+}

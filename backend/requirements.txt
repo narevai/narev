@@ -1,0 +1,33 @@
+# Core framework
+fastapi==0.116.1
+uvicorn[standard]==0.35.0
+
+# Database
+sqlalchemy==2.0.41
+
+# Data processing
+pydantic==2.11.7
+pydantic-settings==2.10.1
+pandas==2.3.1
+openpyxl==3.1.5
+
+# Templates and frontend
+jinja2==3.1.6
+
+# ETL Pipeline - bez wersji
+dlt[sqlalchemy,postgres,filesystem,az]==1.13.0
+s3fs<2025.0.0
+sf-hamilton[visualization]>=1.88.0
+
+# Security
+cryptography==45.0.5
+
+# HTTP Client
+httpx==0.28.1
+
+# Providers specific
+google==3.0.0
+google-cloud-bigquery==3.34.0
+boto3
+pyarrow>=10.0.0
+azure-storage-blob==12.25.1

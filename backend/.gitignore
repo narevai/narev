@@ -1,0 +1,29 @@
+.ruff_cache/
+
+# Unit test / coverage reports
+.coverage
+htmlcov/
+
+# Byte-compiled / optimized / DLL files
+.pytest_cache/
+__pycache__/
+
+# MAC OS X
+**/.DS_Store
+.DS_Store
+
+# DLT
+.dlt/data/*
+
+# Data files and logs
+data/
+logs/
+temp/
+
+# Test coverage reports
+htmlcov/
+
+# Python packaging
+*.egg-info/
+build/
+dist/

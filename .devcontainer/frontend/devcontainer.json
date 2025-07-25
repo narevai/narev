@@ -1,0 +1,54 @@
+{
+    "name": "Narev Frontend Development",
+    "dockerComposeFile": "../docker-compose.yaml",
+    "service": "frontend",
+    "workspaceFolder": "/app/frontend",
+    "shutdownAction": "stopCompose",
+    
+    "customizations": {
+      "vscode": {
+        "extensions": [
+          "ms-vscode.vscode-typescript-next",
+          "esbenp.prettier-vscode",
+          "bradlc.vscode-tailwindcss",
+          "dbaeumer.vscode-eslint",
+          "ms-vscode.vscode-json"
+        ],
+        "settings": {
+          "typescript.preferences.includePackageJsonAutoImports": "auto",
+          "typescript.suggest.autoImports": true,
+          "typescript.preferences.importModuleSpecifier": "relative",
+          "editor.formatOnSave": true,
+          "editor.defaultFormatter": "esbenp.prettier-vscode",
+          "editor.codeActionsOnSave": {
+            "source.fixAll.eslint": "explicit"
+          },
+          "[typescript]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode"
+          },
+          "[typescriptreact]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode"
+          },
+          "[javascript]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode"
+          },
+          "[javascriptreact]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode"
+          },
+          "prettier.requireConfig": true
+        }
+      }
+    },
+  
+    "forwardPorts": [5173, 8000],
+    "portsAttributes": {
+      "5173": {
+        "label": "Frontend (Vite)"
+      },
+      "8000": {
+        "label": "Backend API"
+      }
+    },
+    
+    "postCreateCommand": "pnpm install"
+  }

@@ -1,0 +1,62 @@
+# Python cache
+backend/__pycache__/
+backend/**/__pycache__/
+
+# Testing and coverage artifacts (if they exist)
+backend/.pytest_cache/
+backend/.coverage
+backend/htmlcov/
+backend/.ruff_cache/
+backend/.mypy_cache/
+
+# Development files you identified
+backend/dev.sh
+
+# Development and build tools
+backend/Makefile
+
+# Data directory
+backend/data/
+
+# Frontend artifacts
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/.next/
+frontend/out/
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/pnpm-debug.log*
+frontend/.eslintcache
+
+# Environment files
+.env*
+backend/.env*
+frontend/.env*
+
+# Editor and IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Git and version control
+.git/
+.gitignore
+.gitattributes
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Documentation
+docs/
+README.md
+*.md
+LICENSE
+
+# Docker files (optional)
+Dockerfile*
+docker-compose*.yml
+.dockerignore

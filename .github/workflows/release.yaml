@@ -1,0 +1,142 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get version from tag
+        id: get_version
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/v}
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "tag=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+
+      - name: Get frontend version
+        id: frontend_version
+        run: |
+          FRONTEND_VERSION=$(jq -r '.version' frontend/package.json)
+          echo "frontend_version=$FRONTEND_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Get backend version
+        id: backend_version
+        run: |
+          BACKEND_VERSION=$(grep '^version = ' backend/pyproject.toml | sed 's/version = "\(.*\)"/\1/')
+          echo "backend_version=$BACKEND_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Verify version consistency
+        run: |
+          TAG_VERSION="${{ steps.get_version.outputs.version }}"
+          FRONTEND_VERSION="${{ steps.frontend_version.outputs.frontend_version }}"
+          BACKEND_VERSION="${{ steps.backend_version.outputs.backend_version }}"
+
+          echo "🏷️  Tag version: $TAG_VERSION"
+          echo "🎨 Frontend version: $FRONTEND_VERSION"
+          echo "⚙️  Backend version: $BACKEND_VERSION"
+
+          if [ "$TAG_VERSION" != "$FRONTEND_VERSION" ]; then
+            echo "❌ Tag version ($TAG_VERSION) doesn't match frontend package.json version ($FRONTEND_VERSION)"
+            exit 1
+          fi
+
+          if [ "$TAG_VERSION" != "$BACKEND_VERSION" ]; then
+            echo "❌ Tag version ($TAG_VERSION) doesn't match backend pyproject.toml version ($BACKEND_VERSION)"
+            exit 1
+          fi
+
+          echo "✅ All versions are consistent!"
+
+  docker-build:
+    needs: [validate]
+    uses: ./.github/workflows/docker-build-push.yaml
+    permissions:
+      contents: read
+      packages: write
+    secrets: inherit
+
+  release:
+    needs: [validate, docker-build]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: read
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get version from tag
+        id: get_version
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/v}
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "tag=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+
+      - name: Extract latest changelog entry
+        id: changelog
+        run: |
+          if [ ! -f CHANGELOG.md ]; then
+            echo "content=No changelog available for version ${{ steps.get_version.outputs.version }}." >> $GITHUB_OUTPUT
+          else
+            # Extract the section for this specific version
+            CHANGELOG_CONTENT=$(awk -v version="${{ steps.get_version.outputs.version }}" '
+              BEGIN { found=0; content="" }
+              /^## \[/ { 
+                if (found) exit
+                if ($0 ~ "\\[" version "\\]" || $0 ~ version) {
+                  found=1
+                  content = $0 "\n"
+                  next
+                }
+              }
+              found && /^## \[/ { exit }
+              found { content = content $0 "\n" }
+              END { 
+                if (content == "") {
+                  print "No changelog entry found for version " version
+                } else {
+                  print content
+                }
+              }
+            ' CHANGELOG.md)
+            
+            # If no specific version found, try to get the latest entry
+            if [[ "$CHANGELOG_CONTENT" == *"No changelog entry found"* ]]; then
+              CHANGELOG_CONTENT=$(awk '
+                BEGIN { found=0; content="" }
+                /^## \[/ { 
+                  if (found) exit
+                  found=1
+                  content = $0 "\n"
+                  next
+                }
+                found && /^## \[/ { exit }
+                found { content = content $0 "\n" }
+                END { print content }
+              ' CHANGELOG.md)
+            fi
+            
+            {
+              echo "content<<EOF"
+              echo "$CHANGELOG_CONTENT"
+              echo "EOF"
+            } >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.get_version.outputs.tag }}
+          name: Release ${{ steps.get_version.outputs.tag }}
+          body: ${{ steps.changelog.outputs.content }}
+          draft: false
+          prerelease: ${{ contains(steps.get_version.outputs.version, '-') }}
+          generate_release_notes: true

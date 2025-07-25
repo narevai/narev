@@ -15,7 +15,7 @@ openpyxl==3.1.5
 jinja2==3.1.6
 
 # ETL Pipeline - bez wersji
-dlt[sqlalchemy,postgres,filesystem,az]==1.13.0
+dlt[sqlalchemy,postgres,filesystem,az]==1.14.1
 s3fs<2025.0.0
 sf-hamilton[visualization]>=1.88.0
 

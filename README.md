@@ -1,4 +1,5 @@
-# NarevAI Billing Analyzer
+![Narev Banner](./.github/assets/banner.png)
+# Narev
 
 **Master the AI and cloud cost-speed-quality tradeoff with unified analytics.**
 
@@ -8,9 +9,9 @@
 [![Latest version](https://ghcr-badge.egpl.dev/narevai/narev/latest_tag?trim=major&label=latest)](https://github.com/narevai/narev/pkgs/container/narev)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
-NarevAI is an open source, self-hosted FinOps platform for analyzing and optimizing your AI and cloud spend. It unifies cost and usage data from AWS, Azure, GCP, and OpenAI, providing real-time dashboards, FOCUS-compliant analytics, and actionable recommendations—all while keeping your data private and under your control.
+Narev is an open source, self-hosted FinOps platform for analyzing and optimizing your AI and cloud spend. It unifies cost and usage data from AWS, Azure, GCP, and OpenAI, providing real-time dashboards, FOCUS-compliant analytics, and actionable recommendations—all while keeping your data private and under your control.
 
----
+![Narev Dashboard](./.github/assets/screenshot.png)
 
 ## Features
 
@@ -40,8 +41,6 @@ open http://localhost:8000
 
 - Try [Demo Mode](https://www.narev.ai/docs/) with sample data—no setup required.
 - For production, see the [Deployment Guide](https://www.narev.ai/docs/getting-started/deployment.html).
-
----
 
 ## License
 

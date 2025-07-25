@@ -8,7 +8,7 @@ COPY frontend/ ./
 RUN pnpm run build
 
 ######## Backend Production Stage ########
-FROM python:3.12-slim-bookworm AS production
+FROM python:3.13-slim-bookworm AS production
 WORKDIR /app
 
 # Install system dependencies and clean up in one layer

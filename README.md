@@ -21,25 +21,32 @@ Narev is an open source, self-hosted FinOps platform for analyzing and optimizin
 
 ## Quick Start
 
-**Demo Mode (with sample data):**
+### Demo Mode (with sample data)
 ```bash
 docker run -d \
-  --name narev-billing-demo \
+  --name narev \
   -p 8000:8000 \
   -v $(pwd)/data:/app/data \
   -e DEMO="true" \
   ghcr.io/narevai/narev:latest
-open http://localhost:8000
 ```
 
-**Production:**
+### Production
+First, generate an encryption key:
 ```bash
-docker run -p 8000:8000 ghcr.io/narevai/narev:latest
-open http://localhost:8000
+python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
 ```
-
-- Try [Demo Mode](https://www.narev.ai/docs/) with sample data—no setup required.
-- For production, see the [Deployment Guide](https://www.narev.ai/docs/getting-started/deployment.html).
+Then run the container with your generated key:
+```bash
+docker run -d \
+  --name narev-prod \
+  -p 8000:8000 \
+  -v $(pwd)/data:/app/data \
+  -e ENCRYPTION_KEY="gAAAAABhZ_your_actual_generated_key_here" \
+  -e ENVIRONMENT="production" \
+  ghcr.io/narevai/narev:latest
+```
+- Full production setup in the [Deployment Guide](https://www.narev.ai/docs/getting-started/deployment.html).
 
 ## License
 

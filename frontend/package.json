@@ -78,7 +78,7 @@
     "knip": "^5.61.3",
     "openapi-typescript": "^7.8.0",
     "prettier": "^3.6.0",
-    "prettier-plugin-tailwindcss": "^0.6.13",
+    "prettier-plugin-tailwindcss": "^0.6.14",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.35.0",
     "vite": "^7.0.2"

@@ -27,7 +27,7 @@ httpx==0.28.1
 
 # Providers specific
 google==3.0.0
-google-cloud-bigquery==3.34.0
+google-cloud-bigquery==3.35.1
 boto3
 pyarrow>=10.0.0
 azure-storage-blob==12.25.1

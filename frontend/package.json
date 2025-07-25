@@ -59,7 +59,7 @@
     "zod": "^4.0.5"
   },
   "devDependencies": {
-    "@eslint/js": "^9.29.0",
+    "@eslint/js": "^9.31.0",
     "@faker-js/faker": "^9.9.0",
     "@tanstack/eslint-plugin-query": "^5.81.2",
     "@tanstack/react-query-devtools": "^5.81.2",

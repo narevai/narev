@@ -2,7 +2,7 @@
   "name": "thin-ops",
   "private": false,
   "version": "0.3.0",
-  "packageManager": "pnpm@10.34.4",
+  "packageManager": "pnpm@10.34.5",
   "engines": {
     "node": ">=24.0.0"
   },

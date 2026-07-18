@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "thin-ops-api"
-version = "0.3.0"
+version = "0.4.0"
 description = "thin-ops - selfhosted FinOps platform"
 requires-python = ">=3.12,<3.13"
 dependencies = [

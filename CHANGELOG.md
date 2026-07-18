@@ -5,6 +5,49 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0] - 2026-07-18
+
+### Changed
+
+- Migrated documentation from VitePress to Mintlify; content now lives under `docs/oss/thinops/` as MDX.
+- CI docs job runs Mintlify broken-link checks instead of a VitePress build.s
+- Added root `.npmrc` with a shared pnpm store path for the dev container.
+
+### Fixed
+
+- Made the `.env` file optional in the dev container Docker Compose setup, so the stack starts without one.
+
+### Security
+
+- Bumped `pydantic-settings` in the backend (2.14.1 → 2.14.2).
+- Bumped `cryptography` in the backend (46.0.7 → 48.0.1).
+
+### Dependencies
+
+- Updated `pnpm` to v10.34.5.
+- Updated GitHub Actions: `actions/checkout` v6 → v7, `actions/setup-node` v6 → v7.
+
+**`backend/`**
+
+- `fastapi` 0.136.1 → 0.139.0
+- `uvicorn[standard]` 0.47.0 → 0.51.0
+- `sqlalchemy` 2.0.49 → 2.0.51
+- `pydantic-settings` 2.14.1 → 2.14.2
+- `dlt[sqlalchemy,postgres,filesystem,az]` 1.27.0 → 1.29.0
+- `cryptography` 46.0.7 → 48.0.1
+- `google-cloud-bigquery` 3.41.0 → 3.42.2
+- `google-cloud-bigquery-storage` 2.38.0 → 2.39.0
+- `azure-storage-blob` 12.29.0 → 12.30.0
+
+**`frontend/`**
+
+- Lockfile updates across the toolchain, including `react` 19.2.6 → 19.2.7, `vite` 8.0.13 → 8.1.4, `axios` 1.16.1 → 1.18.1, `tailwindcss` 4.3.0 → 4.3.2, `eslint` 9.39.4 → 9.39.5, Radix UI components, and TanStack packages.
+
+**`docs/`**
+
+- Replaced VitePress with Mintlify CLI (`mintlify@4.2.510`); removed VitePress dependencies and lockfile.
+
+
 ## [0.3.0] - 2026-05-22
 
 ### Changed

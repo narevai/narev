@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Migrated documentation from VitePress to Mintlify; content now lives under `docs/oss/thinops/` as MDX.
-- CI docs job runs Mintlify broken-link checks instead of a VitePress build.s
+- CI docs job runs Mintlify broken-link checks instead of a VitePress build.
 - Added root `.npmrc` with a shared pnpm store path for the dev container.
 
 ### Fixed

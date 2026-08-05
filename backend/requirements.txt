@@ -20,7 +20,7 @@ s3fs<2026.0.0
 sf-hamilton[visualization]>=1.88.0
 
 # Security
-cryptography==48.0.1
+cryptography==50.0.0
 
 # HTTP Client
 httpx==0.28.1

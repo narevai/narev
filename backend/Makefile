@@ -1,7 +1,7 @@
 .PHONY: install format check test dev
 
 install:
-	uv pip install --system -e .
+	uv pip install --system -e . --group dev
 
 format:
 	ruff format .

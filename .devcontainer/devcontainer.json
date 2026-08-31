@@ -14,11 +14,12 @@
         "charliermarsh.ruff",
         "yzhang.markdown-all-in-one",
         "ms-vscode.vscode-json",
-        "ms-vscode.vscode-yaml"
-      ]
-    },
-    "settings": {
-      "python.defaultInterpreterPath": "/usr/local/bin/python"
+        "ms-vscode.vscode-yaml",
+        "ms-python.vscode-python-envs"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python"
+      }
     }
   },
   "forwardPorts": [

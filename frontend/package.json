@@ -90,6 +90,10 @@
       "seroval": "^1.4.1",
       "seroval-plugins": "^1.4.1",
       "picomatch": "^4.0.4"
-    }
+    },
+    "onlyBuiltDependencies": [
+      "@swc/core",
+      "esbuild"
+    ]
   }
 }

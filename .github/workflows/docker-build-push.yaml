@@ -65,7 +65,7 @@ jobs:
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
           flavor: |
-            latest=${{ github.ref_type == 'tag' && !contains(github.ref_name, '-') }}
+            latest=${{ github.ref_type == 'tag' && !contains(github.ref_name, '-') && !startsWith(github.ref_name, 'v0.') }}
 
       - name: Extract metadata for Docker cache
         id: cache-meta
@@ -151,7 +151,7 @@ jobs:
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
           flavor: |
-            latest=${{ github.ref_type == 'tag' && !contains(github.ref_name, '-') }}
+            latest=${{ github.ref_type == 'tag' && !contains(github.ref_name, '-') && !startsWith(github.ref_name, 'v0.') }}
 
       - name: Create manifest list and push
         working-directory: /tmp/digests

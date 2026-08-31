@@ -1,7 +1,9 @@
 ######## Frontend Build Stage ########
 FROM node:24-alpine AS frontend-build
 WORKDIR /app/frontend
-RUN npm install -g pnpm
+RUN corepack enable
+COPY frontend/package.json frontend/pnpm-lock.yaml frontend/pnpm-workspace.yaml ./
+RUN corepack install
 COPY frontend/ ./
 RUN pnpm install --frozen-lockfile
 RUN pnpm run build

@@ -14,7 +14,7 @@ export function TeamLogo({ logo: Logo }: { logo: React.ElementType }) {
             <Logo className='size-4' />
           </div>
           <div className='grid flex-1 text-left text-sm leading-tight'>
-            <span className='truncate font-semibold'>Narev</span>
+            <span className='truncate font-semibold'>Varne</span>
           </div>
         </SidebarMenuButton>
       </SidebarMenuItem>

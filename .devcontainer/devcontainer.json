@@ -1,5 +1,5 @@
 {
-    "name": "thin-ops Development",
+    "name": "varne Development",
     "dockerComposeFile": "docker-compose.yaml",
     "service": "dev",
     "workspaceFolder": "/workspace",

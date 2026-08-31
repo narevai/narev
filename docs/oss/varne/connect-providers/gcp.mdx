@@ -1,7 +1,7 @@
 ---
 title: 'Google Cloud Platform'
 outline: deep
-description: "Enable GCP billing exports to BigQuery, build a FOCUS-aligned view, and sync Google Cloud usage and cost data into Narev Self-Hosted."
+description: "Enable GCP billing exports to BigQuery, build a FOCUS-aligned view, and sync Google Cloud usage and cost data into Varne."
 ---
 
 ## Prerequisites
@@ -20,7 +20,7 @@ description: "Enable GCP billing exports to BigQuery, build a FOCUS-aligned view
 3. Go to the **BigQuery export** tab
 
 <Frame>
-<img src="/images/oss/thin-ops/screenshots/gcp-billing-export.png" alt="GCP BigQuery Billing Export" />
+<img src="/images/oss/varne/screenshots/gcp-billing-export.png" alt="GCP BigQuery Billing Export" />
 </Frame>
 
 4. Enable both exports:
@@ -47,13 +47,13 @@ Google provides a FOCUS-compliant BigQuery view:
 1. Wait 24-48 hours after enabling exports for data to populate
 2. Follow one of these guides to create the FOCUS view:
    - **Google's official guide**: [FOCUS BigQuery View guide](https://cloud.google.com/billing/docs/how-to/export-data-bigquery-tables#create-focus-view)
-   - **FinOps Foundation guide**: [Creating FOCUS Views in BigQuery](/images/oss/thin-ops/guides/gcp-focus-guide-v1.pdf) (comprehensive step-by-step)
+   - **FinOps Foundation guide**: [Creating FOCUS Views in BigQuery](/images/oss/varne/guides/gcp-focus-guide-v1.pdf) (comprehensive step-by-step)
 3. Use the provided SQL template, replacing dataset paths with your actual ones
 4. Save the view with a name like `gcp_billing_focus_v1`
 
 ### 3. Note your configuration
 
-After setup, note these details for NarevAI configuration:
+After setup, note these details for Varne configuration:
 
 - Project ID: Where your billing data is stored
 - Dataset ID: The BigQuery dataset name (for example, `billing export`)
@@ -66,13 +66,13 @@ After setup, note these details for NarevAI configuration:
 1. Go to **Identity and Access Management (IAM) & Admin** > **Service Accounts** in the Google Cloud Console
 
 <Frame>
-<img src="/images/oss/thin-ops/screenshots/gcp-create-service-account.png" alt="GCP Service Accounts" />
+<img src="/images/oss/varne/screenshots/gcp-create-service-account.png" alt="GCP Service Accounts" />
 </Frame>
 
 2. Click **Create Service Account**
 3. Provide details:
    - Username: `narevai-billing-reader`
-   - Description: `Service account for NarevAI billing analysis`
+   - Description: `Service account for Varne billing analysis`
 4. Click **Create and Continue**
 
 ### 2. Assign permissions
@@ -91,15 +91,15 @@ Assign the following roles to your service account:
 4. Select **JSON** format
 5. Click **Create** and save the downloaded JSON file securely
 
-## Adding GCP Provider in NarevAI
+## Adding GCP Provider in Varne
 
 ### Step 1: Navigate to Connect
 
-1. In the NarevAI sidebar, under **Data Connections**, click **Connect**
+1. In the Varne sidebar, under **Data Connections**, click **Connect**
 2. You'll see the "Provider Integrations" page with available providers
 
 <Frame>
-<img src="/images/oss/thin-ops/screenshots/narevai-connections.png" alt="NarevAI Connections" />
+<img src="/images/oss/varne/screenshots/varne-connections.png" alt="Varne Connections" />
 </Frame>
 
 ### Step 2: Select GCP Provider
@@ -109,12 +109,12 @@ Assign the following roles to your service account:
 3. The GCP configuration dialog opens
 
 <Frame>
-<img src="/images/oss/thin-ops/screenshots/narevai-gcp-provider-dialog.png" alt="NarevAI GCP Provider Dialog" />
+<img src="/images/oss/varne/screenshots/varne-gcp-provider-dialog.png" alt="Varne GCP Provider Dialog" />
 </Frame>
 
 ### Step 3: Configure GCP Provider
 
-#### Narev configuration
+#### Varne configuration
 
 **Provider Name** ✅ _Required_
 
@@ -157,8 +157,8 @@ Assign the following roles to your service account:
 
 1. Review all configuration settings
 2. Click the **Connect** button
-3. NarevAI tests the connection to your BigQuery dataset
-4. If successful, NarevAI adds the provider and marks it as "Connected"
+3. Varne tests the connection to your BigQuery dataset
+4. If successful, Varne adds the provider and marks it as "Connected"
 5. You can now sync billing data from this GCP account
 
 **Connection Test includes:**
@@ -329,10 +329,10 @@ To find your FOCUS view name in BigQuery:
 1. Go to **BigQuery** in the Google Cloud Console
 2. Navigate to your billing dataset
 3. Look for your FOCUS view (typically named `gcp_billing_focus_v1` or similar)
-4. Use this exact view name in your NarevAI provider configuration
+4. Use this exact view name in your Varne provider configuration
 
 <Warning>
-  **FOCUS View Required**: NarevAI requires a FOCUS-compliant BigQuery view for GCP billing data. You must create this
+  **FOCUS View Required**: Varne requires a FOCUS-compliant BigQuery view for GCP billing data. You must create this
   view using Google's provided SQL template before configuring the provider. Raw billing export tables are not
   supported.
 </Warning>
@@ -349,5 +349,5 @@ Once configured, the GCP provider will collect:
 - Time-series data: Daily cost and usage patterns
 
 Data collection runs automatically based on your configured schedule and appears
-in the NarevAI dashboard after the first successful sync.
+in the Varne dashboard after the first successful sync.
 GCP billing data is typically updated multiple times per day as usage occurs.

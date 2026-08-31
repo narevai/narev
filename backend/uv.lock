@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = "==3.12.*"
 
 [[package]]
@@ -28,25 +28,6 @@ sdist = { url = "https://files.pythonhosted.org/packages/a2/6e/371856a3fb9d31ca8
 wheels = [
     { url = "https://files.pythonhosted.org/packages/79/7b/2c79738432f5c924bef5071f933bcc9efd0473bac3b4aa584a6f7c1c8df8/mypy_extensions-1.1.0-py3-none-any.whl", hash = "sha256:1be4cccdb0f2482337c4743e60421de3a356cd97508abadd57d47403e94f5505", size = 4963, upload-time = "2025-04-22T14:54:22.983Z" },
 ]
-
-[[package]]
-name = "thin-ops-api"
-version = "0.4.0"
-source = { editable = "." }
-dependencies = [
-    { name = "pydantic" },
-]
-
-[package.dev-dependencies]
-dev = [
-    { name = "sf-hamilton", extra = ["visualization"] },
-]
-
-[package.metadata]
-requires-dist = [{ name = "pydantic", specifier = ">=2.11.7" }]
-
-[package.metadata.requires-dev]
-dev = [{ name = "sf-hamilton", extras = ["visualization"], specifier = ">=1.88.0" }]
 
 [[package]]
 name = "networkx"
@@ -230,3 +211,22 @@ sdist = { url = "https://files.pythonhosted.org/packages/95/32/1a225d6164441be76
 wheels = [
     { url = "https://files.pythonhosted.org/packages/5c/23/c7abc0ca0a1526a0774eca151daeb8de62ec457e77262b66b359c3c7679e/tzdata-2025.2-py2.py3-none-any.whl", hash = "sha256:1a403fada01ff9221ca8044d701868fa132215d84beb92242d9acd2147f667a8", size = 347839, upload-time = "2025-03-23T13:54:41.845Z" },
 ]
+
+[[package]]
+name = "varne-api"
+version = "0.4.0"
+source = { editable = "." }
+dependencies = [
+    { name = "pydantic" },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "sf-hamilton", extra = ["visualization"] },
+]
+
+[package.metadata]
+requires-dist = [{ name = "pydantic", specifier = ">=2.11.7" }]
+
+[package.metadata.requires-dev]
+dev = [{ name = "sf-hamilton", extras = ["visualization"], specifier = ">=1.88.0" }]

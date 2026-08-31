@@ -1,12 +1,12 @@
 ---
 title: 'Deploy with Docker'
 order: 3
-description: "Step-by-step deployment guide for running Narev Self-Hosted in production with Docker, including environment configuration and security settings."
+description: "Step-by-step deployment guide for running Varne in production with Docker, including environment configuration and security settings."
 ---
 
 # Deployment Guide
 
-This guide explains how to deploy the Narev AI Billing Analyzer
+This guide explains how to deploy the Varne Billing Analyzer
 using the official Docker image.
 
 ## Prerequisites
@@ -29,12 +29,12 @@ Then run the container with your generated key:
 
 ```bash
 docker run -d \
-  --name narev-billing \
+  --name varne \
   -p 8000:8000 \
   -v $(pwd)/data:/app/data \
   -e ENCRYPTION_KEY="gAAAAABhZ_your_actual_generated_key_here" \
   -e ENVIRONMENT="production" \
-  ghcr.io/narevai/narev:latest
+  ghcr.io/narevai/varne:latest
 ```
 
 ## Environment Variables
@@ -110,7 +110,7 @@ This **MUST** be changed from the default value in production:
 #### `VITE_APP_NAME`
 
 - **Purpose**: Application name displayed in the UI
-- **Default**: `Narev AI Dashboard`
+- **Default**: `Varne Dashboard`
 - **Example**: `VITE_APP_NAME="My Company Billing"`
 
 #### `VITE_PORT`
@@ -163,7 +163,7 @@ This **MUST** be changed from the default value in production:
 #### `API_TITLE`
 
 - **Purpose**: Title displayed in API documentation
-- **Default**: `NarevAI Billing Analyzer`
+- **Default**: `Varne Billing Analyzer`
 
 #### `API_DESCRIPTION`
 
@@ -214,8 +214,8 @@ version: '3.8'
 
 services:
   app:
-    image: ghcr.io/narevai/narev:latest
-    container_name: narev-billing
+    image: ghcr.io/narevai/varne:latest
+    container_name: varne
     ports:
       - '8000:8000'
     environment:
@@ -344,7 +344,7 @@ To update to a newer version:
 
 ```bash
 # Pull the latest image
-docker pull ghcr.io/narevai/narev:latest
+docker pull ghcr.io/narevai/varne:latest
 
 # Restart the container
 docker-compose down
@@ -356,7 +356,7 @@ docker-compose up -d
 ### Check Application Logs
 
 ```bash
-docker logs narev-billing
+docker logs varne
 ```
 
 ### Verify Health Status
@@ -368,5 +368,5 @@ curl http://localhost:8000/health
 ### Access Container Shell
 
 ```bash
-docker exec -it narev-billing /bin/bash
+docker exec -it varne /bin/bash
 ```

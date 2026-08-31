@@ -1,5 +1,5 @@
 """
-NarevAI Billing Analyzer - Raw Billing Data Model
+Varne Billing Analyzer - Raw Billing Data Model
 """
 
 from uuid import uuid4

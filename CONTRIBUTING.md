@@ -4,7 +4,7 @@ We want you here. Especially if youre not a bot.
 
 ## Ways to Contribute
 
-- **Report bugs** via [GitHub Issues](https://github.com/narevai/thin-ops/issues)
+- **Report bugs** via [GitHub Issues](https://github.com/narevai/varne/issues)
 - **Suggest features** for better AI cost tracking
 - **Improve documentation** 
 - **Submit code changes**
@@ -12,7 +12,7 @@ We want you here. Especially if youre not a bot.
 
 ### Before You Start
 
-1. Check existing [issues](https://github.com/narevai/thin-ops/issues) and [PRs](https://github.com/narevai/thin-ops/pulls)
+1. Check existing [issues](https://github.com/narevai/varne/issues) and [PRs](https://github.com/narevai/varne/pulls)
 2. Read our [Code of Conduct](CODE_OF_CONDUCT.md)
 3. For large changes, open an issue first to discuss
 
@@ -37,14 +37,14 @@ We want you here. Especially if youre not a bot.
 1. Clone the repository
 
 ```bash
-git clone https://github.com/narevai/thin-ops.git
-cd thin-ops
+git clone https://github.com/narevai/varne.git
+cd varne
 ```
 
 1. **Reopen in the dev container**
    - When prompted, choose **Reopen in Container**, or
    - Command Palette (Cmd/Ctrl+Shift+P): **Dev Containers: Reopen in Container**
-   - This project uses a single **thin-ops Development** configuration (see `.devcontainer/devcontainer.json`), backed by `.devcontainer/docker-compose.yaml`.
+   - This project uses a single **varne Development** configuration (see `.devcontainer/devcontainer.json`), backed by `.devcontainer/docker-compose.yaml`.
 
 2. **Environment file**
    - Copy `.env.example` to `.env` if you do not have one yet.

@@ -489,7 +489,7 @@ def main():
     """Main function."""
     import argparse
 
-    parser = argparse.ArgumentParser(description="Test ThinOps API endpoints")
+    parser = argparse.ArgumentParser(description="Test Varne API endpoints")
     parser.add_argument(
         "--url",
         default="http://localhost:8000",
@@ -508,7 +508,7 @@ def main():
     # Handle quiet vs verbose flags
     verbose = args.verbose and not args.quiet
 
-    print("ThinOps API Test Suite")
+    print("Varne API Test Suite")
     print(f"🌐 Testing API at: {args.url}")
     if verbose or not args.quiet:
         print(f"📅 Started at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")

@@ -1,7 +1,7 @@
 ---
 title: 'Microsoft Azure'
 outline: deep
-description: "Configure Azure Cost Management exports to Blob Storage, grant the service principal access, and sync Azure usage into Narev Self-Hosted."
+description: "Configure Azure Cost Management exports to Blob Storage, grant the service principal access, and sync Azure usage into Varne."
 ---
 
 ## Prerequisites
@@ -20,7 +20,7 @@ description: "Configure Azure Cost Management exports to Blob Storage, grant the
 3. Click **Create** to create a new storage account
 
 <Frame>
-<img src="/images/oss/thin-ops/screenshots/azure-storage-accounts.png" alt="Azure Storage Accounts" />
+<img src="/images/oss/varne/screenshots/azure-storage-accounts.png" alt="Azure Storage Accounts" />
 </Frame>
 
 4. Configure the storage account:
@@ -52,11 +52,11 @@ description: "Configure Azure Cost Management exports to Blob Storage, grant the
 #### Step 1: Basics
 
 <Frame>
-<img src="/images/oss/thin-ops/screenshots/azure-export-template.png" alt="Azure Export Template Selection" />
+<img src="/images/oss/varne/screenshots/azure-export-template.png" alt="Azure Export Template Selection" />
 </Frame>
 
 5. **Select Export Template**: Choose **Cost and usage (FOCUS)** template
-   - This exports data in FOCUS 1.0 format, which NarevAI maps to FOCUS 1.2
+   - This exports data in FOCUS 1.0 format, which Varne maps to FOCUS 1.2
    - Avoid other templates as they may not be fully supported
 
 #### Step 2: Datasets
@@ -66,7 +66,7 @@ description: "Configure Azure Cost Management exports to Blob Storage, grant the
    - This ensures that exports have unique names
 
 <Frame>
-<img src="/images/oss/thin-ops/screenshots/azure-export-destination.png" alt="Azure Export Destination" />
+<img src="/images/oss/varne/screenshots/azure-export-destination.png" alt="Azure Export Destination" />
 </Frame>
 
 #### Step 3: Destination
@@ -88,7 +88,7 @@ description: "Configure Azure Cost Management exports to Blob Storage, grant the
 
 ### 4. Note your configuration
 
-After setup, note these details for NarevAI configuration:
+After setup, note these details for Varne configuration:
 
 - Storage username: The name of your storage account
 - Container name: The container where exports are stored
@@ -103,22 +103,22 @@ After setup, note these details for NarevAI configuration:
 3. Navigate to Sidebar: **Security + networking** > **Access keys**
 4. Under **key1** or **key2**, click **Show** next to the key
 5. Copy the entire key value (long alphanumeric string)
-6. Store it securely because NarevAI uses it for authentication
+6. Store it securely because Varne uses it for authentication
 
 <Warning>
   **Storage key security**: storage account keys provide full access to your storage account. Store them securely and
   rotate them regularly. Consider using more restrictive authentication methods for production environments.
 </Warning>
 
-## Adding Azure Provider in NarevAI
+## Adding Azure Provider in Varne
 
 ### Step 1: Navigate to Connect
 
-1. In the NarevAI sidebar, under **Data Connections**, click **Connect**
+1. In the Varne sidebar, under **Data Connections**, click **Connect**
 2. You'll see the "Provider Integrations" page with available providers
 
 <Frame>
-<img src="/images/oss/thin-ops/screenshots/narevai-connections.png" alt="NarevAI Connections" />
+<img src="/images/oss/varne/screenshots/varne-connections.png" alt="Varne Connections" />
 </Frame>
 
 ### Step 2: Select Azure Provider
@@ -128,12 +128,12 @@ After setup, note these details for NarevAI configuration:
 3. The Azure configuration dialog opens
 
 <Frame>
-<img src="/images/oss/thin-ops/screenshots/narevai-azure-provider-dialog.png" alt="NarevAI Azure Provider Dialog" />
+<img src="/images/oss/varne/screenshots/varne-azure-provider-dialog.png" alt="Varne Azure Provider Dialog" />
 </Frame>
 
 ### Step 3: Configure Azure Provider
 
-#### Narev configuration
+#### Varne configuration
 
 **Provider Name** ✅ _Required_
 
@@ -174,8 +174,8 @@ After setup, note these details for NarevAI configuration:
 
 1. Review all configuration settings
 2. Click the **Connect** button
-3. NarevAI tests the connection to your Azure Storage
-4. If successful, NarevAI adds the provider and marks it as "Connected"
+3. Varne tests the connection to your Azure Storage
+4. If successful, Varne adds the provider and marks it as "Connected"
 5. You can now sync billing data from this Azure account
 
 **Connection Test includes:**
@@ -298,7 +298,7 @@ The Azure provider supports:
 
 - Verify that billing exports are being generated
   (check Azure Cost Management > Exports)
-- Ensure the export path in NarevAI matches the directory configured in your export
+- Ensure the export path in Varne matches the directory configured in your export
 - Check if your billing period has completed for data to be available
 
 ## Export File Formats
@@ -325,5 +325,5 @@ Once configured, the Azure provider will collect:
 - Time-series data: Daily cost and usage patterns
 
 Data collection runs automatically based on your configured schedule and appears
-in the NarevAI dashboard after the first successful sync.
+in the Varne dashboard after the first successful sync.
 Azure billing data is typically updated daily as exports are generated.

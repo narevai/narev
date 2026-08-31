@@ -3,9 +3,9 @@ requires = ["setuptools>=45", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "thin-ops-api"
+name = "varne-api"
 version = "0.4.0"
-description = "thin-ops - selfhosted FinOps platform"
+description = "varne - selfhosted FinOps platform"
 requires-python = ">=3.12,<3.13"
 dependencies = [
     "pydantic>=2.11.7",

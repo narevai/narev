@@ -1,7 +1,7 @@
 {
-  "name": "thin-ops-docs",
+  "name": "varne-docs",
   "version": "0.4.0",
-  "description": "Documentation for ThinOps - selfhosted FinOps platform",
+  "description": "Documentation for Varne - selfhosted FinOps platform",
   "scripts": {
     "dev": "npx mintlify@4.2.510 dev",
     "test": "npx mintlify@4.2.510 broken-links"

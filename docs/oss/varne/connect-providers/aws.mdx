@@ -1,7 +1,7 @@
 ---
 title: 'Amazon Web Services'
 outline: deep
-description: "Connect AWS Cost and Usage Reports from S3 to Narev Self-Hosted using IAM credentials, then sync them into the FOCUS specification."
+description: "Connect AWS Cost and Usage Reports from S3 to Varne using IAM credentials, then sync them into the FOCUS specification."
 ---
 
 ## Prerequisites
@@ -24,35 +24,35 @@ description: "Connect AWS Cost and Usage Reports from S3 to Narev Self-Hosted us
 4. Click **Create export**
 
 <Frame>
-<img src="/images/oss/thin-ops/screenshots/aws-create-export.png" alt="AWS Create Export Interface" />
+<img src="/images/oss/varne/screenshots/aws-create-export.png" alt="AWS Create Export Interface" />
 </Frame>
 
 ### 2. Configure export details
 
 1. **Choose Export Type:**
-   - Select **Standard data export** (recommended for NarevAI integration)
+   - Select **Standard data export** (recommended for Varne integration)
    - Alternatively, you can choose **Legacy CUR export** for compatibility with older systems
 
 2. **Export Name:**
-   - Enter a descriptive name (for example, `MyCostExport`, `NarevAI-Export`)
+   - Enter a descriptive name (for example, `MyCostExport`, `Varne-Export`)
    - Export names can have up to 128 characters and must be unique
    - Valid characters are a-z, A-Z, 0-9, - (hyphen), and \_ (underscore)
 
 ### 3. Data table content settings
 
-Select **FOCUS 1.0 with AWS columns** - this is the format NarevAI optimizes for:
+Select **FOCUS 1.0 with AWS columns** - this is the format Varne optimizes for:
 
 - **FOCUS 1.0 with AWS columns** ✅ (Required)
   - Standardized FinOps cost data format
   - Includes AWS-specific metadata for detailed analysis
-  - Fully supported by NarevAI's cost optimization engine
+  - Fully supported by Varne's cost optimization engine
 
 ### 4. Data export delivery options
 
 Configure how your export will be delivered:
 
 <Frame>
-<img src="/images/oss/thin-ops/screenshots/aws-data-delivery-options.png" alt="AWS Data Delivery Options" />
+<img src="/images/oss/varne/screenshots/aws-data-delivery-options.png" alt="AWS Data Delivery Options" />
 </Frame>
 
 #### Compression type and file format
@@ -76,7 +76,7 @@ Configure how your export will be delivered:
      - **Select existing bucket** - Choose from your existing S3 buckets
 
 <Frame>
-<img src="/images/oss/thin-ops/screenshots/aws-create-bucket.png" alt="AWS Create Bucket" />
+<img src="/images/oss/varne/screenshots/aws-create-bucket.png" alt="AWS Create Bucket" />
 </Frame>
 
 2. **For New Buckets:**
@@ -106,7 +106,7 @@ Add tags to help organize and track your AWS costs:
 
 ## AWS Credentials Setup
 
-NarevAI requires AWS credentials to access your cost data. Here's what you need:
+Varne requires AWS credentials to access your cost data. Here's what you need:
 
 ### Required: Access Keys ✅
 
@@ -145,7 +145,7 @@ NarevAI requires AWS credentials to access your cost data. Here's what you need:
 
 **How it works:**
 
-1. NarevAI logs in with your Access Keys
+1. Varne logs in with your Access Keys
 2. Then assumes the IAM Role for actual data access
 3. Uses temporary credentials with limited permissions
 
@@ -156,7 +156,7 @@ NarevAI requires AWS credentials to access your cost data. Here's what you need:
 3. Enter the account ID that needs access
 4. Optionally, require an **External ID** for extra security
 5. Attach the same S3 permissions policy above
-6. Note the **Role ARN** for NarevAI configuration
+6. Note the **Role ARN** for Varne configuration
 
 **📚 Detailed AWS Guides:**
 
@@ -164,15 +164,15 @@ NarevAI requires AWS credentials to access your cost data. Here's what you need:
 - [AWS Billing IAM Permissions](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/security-iam.html)
 - [Cross-Account Resource Access](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies-cross-account-resource-access.html)
 
-## Adding AWS Provider in NarevAI
+## Adding AWS Provider in Varne
 
 ### Step 1: Navigate to Connect
 
-1. In the NarevAI sidebar, under **Data Connections**, click **Connect**
+1. In the Varne sidebar, under **Data Connections**, click **Connect**
 2. You'll see the "Provider Integrations" page with available providers
 
 <Frame>
-<img src="/images/oss/thin-ops/screenshots/narevai-connections.png" alt="NarevAI Connections" />
+<img src="/images/oss/varne/screenshots/varne-connections.png" alt="Varne Connections" />
 </Frame>
 
 ### Step 2: Select AWS Provider
@@ -182,12 +182,12 @@ NarevAI requires AWS credentials to access your cost data. Here's what you need:
 3. The AWS configuration dialog will open
 
 <Frame>
-<img src="/images/oss/thin-ops/screenshots/narevai-aws-provider-dialog.png" alt="NarevAI AWS Provider Dialog" />
+<img src="/images/oss/varne/screenshots/varne-aws-provider-dialog.png" alt="Varne AWS Provider Dialog" />
 </Frame>
 
 ### Step 3: Configure AWS Provider
 
-#### Narev configuration
+#### Varne configuration
 
 **Provider Name** ✅ _Required_
 
@@ -256,8 +256,8 @@ NarevAI requires AWS credentials to access your cost data. Here's what you need:
 
 1. Review all configuration settings
 2. Click the **Connect** button
-3. NarevAI tests the connection to your AWS S3 bucket
-4. If successful, NarevAI adds the provider and marks it as "Connected"
+3. Varne tests the connection to your AWS S3 bucket
+4. If successful, Varne adds the provider and marks it as "Connected"
 5. You can now sync billing data from this AWS account
 
 **Connection Test includes:**
@@ -406,4 +406,4 @@ Once configured, the AWS provider will collect:
 - Time-series data: Daily cost breakdowns and usage patterns
 - FOCUS-compliant data: Standardized cost and usage data format
 
-Data collection runs automatically based on your configured schedule and will appear in the NarevAI dashboard after the first successful sync. AWS export data is typically updated once per day with your selected refresh cadence.
+Data collection runs automatically based on your configured schedule and will appear in the Varne dashboard after the first successful sync. AWS export data is typically updated once per day with your selected refresh cadence.

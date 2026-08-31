@@ -84,7 +84,7 @@ def create_app() -> FastAPI:
 
     @api.get("/api/")
     async def api_root():
-        return {"message": "thin-ops API", "status": "working"}
+        return {"message": "varne API", "status": "working"}
 
     @api.get("/api/test")
     async def test_endpoint():

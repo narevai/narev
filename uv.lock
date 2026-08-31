@@ -1174,7 +1174,7 @@ wheels = [
 ]
 
 [[package]]
-name = "varne-api"
+name = "varne"
 version = "1.0.0a0"
 source = { editable = "." }
 dependencies = [

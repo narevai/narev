@@ -1,7 +1,9 @@
+from pathlib import Path
+
 import ibis
 from loguru import logger
 
-from app.config import get_settings
+from varne.config import get_settings
 
 _connection: ibis.BaseBackend | None = None
 
@@ -11,5 +13,7 @@ def get_connection() -> ibis.BaseBackend:
     if _connection is None:
         settings = get_settings()
         logger.debug("Connecting to DuckDB at {}", settings.database_path)
-        _connection = ibis.duckdb.connect(settings.database_path)
+        database_path = Path(settings.database_path)
+        database_path.parent.mkdir(parents=True, exist_ok=True)
+        _connection = ibis.duckdb.connect(database_path)
     return _connection

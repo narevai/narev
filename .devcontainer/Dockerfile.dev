@@ -13,10 +13,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 RUN pip install --no-cache-dir uv
 
-ENV PYTHONPATH=/workspace/backend \
-    PYTHONDONTWRITEBYTECODE=1 \
+ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    UV_LINK_MODE=copy \
-    UV_SYSTEM_PYTHON=true
+    UV_LINK_MODE=copy
 
 WORKDIR /workspace

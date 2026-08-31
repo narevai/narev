@@ -5,7 +5,7 @@
   "workspaceFolder": "/workspace",
   "overrideCommand": false,
   "shutdownAction": "stopCompose",
-  "postCreateCommand": "make -C backend install",
+  "postCreateCommand": "make install",
   "customizations": {
     "vscode": {
       "extensions": [

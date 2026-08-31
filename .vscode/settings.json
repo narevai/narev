@@ -31,7 +31,7 @@
     "MD041": false
   },
   "python.testing.pytestArgs": [
-    "backend"
+    "tests"
   ],
   "python.testing.unittestEnabled": false,
   "python.testing.pytestEnabled": true

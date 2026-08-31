@@ -1,4 +1,4 @@
-from app.db import get_connection
+from varne.db import get_connection
 
 
 def test_ibis_connection():

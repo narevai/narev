@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from loguru import logger
 
-from app.config import get_settings
+from varne.config import get_settings
 
 router = APIRouter()
 

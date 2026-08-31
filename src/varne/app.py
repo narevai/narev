@@ -4,9 +4,9 @@ from fastapi import FastAPI
 from loguru import logger
 from nicegui import ui
 
-from app.api.v1 import router as v1_router
-from app.config import get_settings
-from app.ui.page import register_pages
+from varne.api.v1 import router as v1_router
+from varne.config import get_settings
+from varne.ui.page import register_pages
 
 settings = get_settings()
 

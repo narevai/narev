@@ -3,7 +3,7 @@ requires = ["setuptools>=45", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "varne-api"
+name = "varne"
 version = "1.0.0-alpha.0"
 description = "varne - selfhosted FinOps platform"
 requires-python = ">=3.14,<3.15"
@@ -19,12 +19,12 @@ dependencies = [
 ]
 
 [tool.setuptools.packages.find]
-include = ["app*"]
+where = ["src"]
 
 [tool.ruff]
 target-version = "py314"
 line-length = 88
-src = ["."]
+src = ["src", "tests"]
 
 [tool.ruff.lint]
 select = [
@@ -48,7 +48,7 @@ skip-magic-trailing-comma = false
 line-ending = "auto"
 
 [tool.coverage.run]
-source = ["."]
+source = ["src/varne"]
 omit = [
     "tests/*",
     "*/test_*.py",

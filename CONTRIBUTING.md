@@ -21,7 +21,7 @@ We want you here. Especially if youre not a bot.
 1. **Fork** the repository
 2. **Create a branch**: `git checkout -b feature/your-feature-name`
 3. **Make your changes** (see Development Setup below)
-4. **Test your changes** using the `make` commands in `backend/` (see below)
+4. **Test your changes** using the `make` commands at the repo root (see below)
 5. **Submit a pull request**
 
 ## Development Environment Setup
@@ -52,10 +52,10 @@ cd varne
 
 3. **Dependencies (first time or after lockfile changes)**
 
-   - The devcontainer **post-create** step runs `make install` in `backend/` (system Python, no venv). If that did not run or failed, install manually:
+   - The devcontainer **post-create** step runs `make install` at the repo root. If that did not run or failed, install manually:
 
 ```bash
-cd /workspace/backend && make install
+make install
 ```
 
    - For frontend work, install Node dependencies separately:
@@ -71,7 +71,7 @@ pnpm install --dir /workspace/docs
 
 One **dev** service includes:
 
-- ✅ Python 3.14 with **uv**; backend dependencies installed on container create via `make install` (system Python)
+- ✅ Python 3.14 with **uv**; dependencies installed into **system Python** on container create via `make install` (no virtualenv)
 - ✅ Workspace mounted at `/workspace`
 - ✅ Ports forwarded for Vite and the API (see `devcontainer.json`)
 
@@ -80,20 +80,19 @@ One **dev** service includes:
 - Frontend: http://localhost:5173 (Vite dev server; start with `pnpm run dev` in `frontend/`)
 - Backend API: http://localhost:8000
 - API docs: http://localhost:8000/docs
-- Health check: http://localhost:8000/health
+- Health check: http://localhost:8000/api/v1/health
 
 ### Running backend and frontend
 
 Use **two terminals** inside the dev container (start the app processes yourself).
 
-**Backend** (from `backend/`):
+**Application** (from the repo root):
 
 ```bash
-cd /workspace/backend
 make dev
 ```
 
-This runs FastAPI with uvicorn and reload on port 8000. Default local database is **SQLite** under `backend/data` unless you change settings.
+This runs FastAPI with uvicorn and reload on port 8000. Default local database is **DuckDB** under `./data` unless you change settings.
 
 **Frontend** (from `frontend/`):
 
@@ -107,7 +106,7 @@ pnpm run dev
 | Check | What to do |
 |--------|------------|
 | Python | `python -c "import fastapi; print('ok')"` |
-| Backend | `cd /workspace/backend && make dev`, then open `/health` and `/docs` |
+| Application | `make dev`, then open `/api/v1/health` and `/docs` |
 | Frontend | `cd /workspace/frontend && pnpm run dev`, open port 5173 |
 | Full stack | Backend + frontend running, `VITE_API_URL` set → confirm browser network calls hit `http://localhost:8000` |
 
@@ -135,34 +134,34 @@ The Vite dev server is configured to bind to `0.0.0.0` for Docker compatibility 
 │   ├── docker-compose.yaml    # dev service + uv cache volume
 │   └── Dockerfile.dev         # Python + uv base image
 ├── .vscode/                   # Editor settings
-├── backend/                   # Python/FastAPI code (includes Makefile)
+├── src/varne/                 # Python package (FastAPI + NiceGUI)
+├── tests/                     # pytest suite
+├── pyproject.toml             # Python project config
+├── Makefile                   # dev, test, check, format
 ├── frontend/                  # Vite React/TypeScript code
 └── docs/                      # Documentation site
 ```
 
 ## Development Workflow
 
-Run **`make`** targets from **`/workspace/backend`** (the backend `Makefile` lives there).
+Run **`make`** targets from the **repo root** (`/workspace`).
 
-### Backend
+### Python
 
 ```bash
-cd /workspace/backend
-
 make install   # Install Python dev dependencies (first time or after lockfile changes)
 make format    # Format code and auto-fix lint issues
 make check     # Verify formatting and linting (same as CI)
 make test      # Run pytest
-make dev       # Run backend server (uvicorn on port 8000)
+make dev       # Run server (uvicorn on port 8000)
 ```
 
 **Extra commands** (not in the Makefile):
 
 ```bash
-uv run pytest --cov=. --cov-report=term-missing   # Tests with coverage
-uv tool run deptry .                              # Audit unused/missing dependencies
-rm -rf htmlcov .coverage .pytest_cache            # Clean test artifacts
-uv run python tests/mock_api/server.py            # Mock API for integration tests
+pytest --cov=src/varne --cov-report=term-missing   # Tests with coverage
+uv tool run deptry .                                        # Audit unused/missing dependencies
+rm -rf htmlcov .coverage .pytest_cache                      # Clean test artifacts
 ```
 
 ### Frontend
@@ -188,17 +187,16 @@ pnpm add -D package-name   # Dev dependencies
 The project includes .vscode/settings.json with:
 
 - ✅ Ruff configured as formatter and linter
-- ✅ Python interpreter: `/usr/local/bin/python` (system Python, no venv)
+- ✅ Python interpreter: `/usr/local/bin/python` (system Python only, no `.venv`)
 - ✅ Auto-formatting on save
 - ✅ Linting errors shown inline
 
 ### Making Changes
 
 1. Edit code — the editor will auto-format and show linting errors where configured.
-2. Run the code quality check (from `backend/`):
+2. Run the code quality check (from the repo root):
 
 ```bash
-cd /workspace/backend
 make format   # Format and fix issues
 make check    # Verify everything passes
 ```
@@ -234,9 +232,8 @@ test: add unit tests for billing sync
 ```
 
 ### Pull Request Guidelines
-1. Before submitting (from `backend/`):
+1. Before submitting (from the repo root):
 ```bash
-cd /workspace/backend
 make format    # Format and fix all issues
 make check     # Ensure formatting and linting pass
 make test      # Run tests
@@ -264,7 +261,6 @@ docker compose -f .devcontainer/docker-compose.yaml up -d --build
 ### Code quality issues
 
 ```bash
-cd /workspace/backend
 make format    # Fix most issues automatically
 make check     # See what still needs fixing
 ```

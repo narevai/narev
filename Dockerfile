@@ -7,19 +7,18 @@ RUN apt-get update && \
 
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONPATH=/app
 ENV HOST=0.0.0.0
 ENV PORT=8000
 ENV WORKERS=1
 
-COPY backend/pyproject.toml backend/uv.lock ./
+COPY pyproject.toml uv.lock ./
+COPY src/ ./src/
 RUN pip install --no-cache-dir --upgrade pip uv && \
-    uv export --frozen --no-dev --no-emit-project --no-hashes | uv pip install --system -r -
-
-COPY backend/ ./
+    uv export --frozen --no-dev --no-hashes --no-emit-project | uv pip install --system -r - && \
+    uv pip install --system --no-deps -e .
 
 EXPOSE $PORT
 HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
     CMD curl --fail http://localhost:$PORT/api/v1/health || exit 1
 
-CMD ["sh", "-c", "uvicorn main:app --host $HOST --port $PORT --workers $WORKERS"]
+CMD ["sh", "-c", "uvicorn varne.app:app --host $HOST --port $PORT --workers $WORKERS"]

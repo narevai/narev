@@ -1,8 +1,0 @@
-# Global code owners
-* @oskarkocol @audrzejq
-
-# Frontend directory
-/frontend/ @oskarkocol
-
-# Backend directory
-/backend/ @audrzejq

@@ -1,4 +1,4 @@
-FROM python:3.12-slim-bookworm AS production
+FROM python:3.14-slim-bookworm AS production
 WORKDIR /app
 
 RUN apt-get update && \

@@ -71,7 +71,7 @@ pnpm install --dir /workspace/docs
 
 One **dev** service includes:
 
-- ✅ Python 3.12 with **uv**; backend dependencies installed on container create via `make install` (system Python)
+- ✅ Python 3.14 with **uv**; backend dependencies installed on container create via `make install` (system Python)
 - ✅ Workspace mounted at `/workspace`
 - ✅ Ports forwarded for Vite and the API (see `devcontainer.json`)
 

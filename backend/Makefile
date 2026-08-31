@@ -1,4 +1,4 @@
-.PHONY: format lint check test test-cov dev install-dev clean
+.PHONY: format lint check deptry test test-cov dev install-dev clean
 
 # Install development dependencies into system Python (no venv)
 install-dev:
@@ -24,6 +24,10 @@ lint:
 check:
 	ruff format --check .
 	ruff check .
+
+# Check for unused or missing dependencies
+deptry:
+	uv tool run deptry .
 
 # Run tests
 test:

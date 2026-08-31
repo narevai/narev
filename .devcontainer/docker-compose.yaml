@@ -1,21 +1,14 @@
 services:
   dev:
     build:
-      context: ../backend
-      dockerfile: ../.devcontainer/Dockerfile.dev
-    command: sleep infinity
-    env_file:
-      - path: "../.env"
-        required: false
-    ports:
-      - "8000:8000"
+      context: ..
+      dockerfile: .devcontainer/Dockerfile.dev
     volumes:
-      - ..:/workspace
-      - pip_cache:/root/.cache/pip
-      - backend_data:/workspace/backend/data
-      - backend_logs:/workspace/backend/logs
+      - ..:/workspace:cached
+      - uv_cache:/root/.cache/uv
+    env_file:
+      - path: ../.env
+        required: false
 
 volumes:
-  pip_cache:
-  backend_data:
-  backend_logs:
+  uv_cache:

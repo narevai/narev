@@ -1,8 +1,9 @@
 .PHONY: format lint check test test-cov dev install-dev clean
 
-# Install development dependencies
+# Install development dependencies into system Python (no venv)
 install-dev:
-	uv sync --group dev
+	uv export --frozen --no-emit-project --no-hashes --group dev \
+		| uv pip install --system -r -
 
 # Format code (separate formatting and linting)
 format:

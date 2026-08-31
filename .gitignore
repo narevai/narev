@@ -1,4 +1,3 @@
-# Personal Cursor/VS Code workspace (Peacock colors, etc.)
 *.local.code-workspace
 
 .pnpm-store

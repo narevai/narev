@@ -50,9 +50,15 @@ cd varne
    - Copy `.env.example` to `.env` if you do not have one yet.
    - For local full-stack development, set **`VITE_API_URL=http://localhost:8000`** in `.env` (see `.env.example`). The frontend uses this in dev so API calls go to the FastAPI server; without it, the client defaults to same-origin and API requests from the Vite dev server usually fail.
 
-3. **Node dependencies (first time or after lockfile changes)**
+3. **Dependencies (first time or after lockfile changes)**
 
-   - The devcontainer **post-create** step runs `pnpm install` for `frontend` and `docs`. If that did not run or failed, install manually:
+   - The devcontainer **post-create** step runs `make install-dev` in `backend/` (system Python, no venv). If that did not run or failed, install manually:
+
+```bash
+cd /workspace/backend && make install-dev
+```
+
+   - For frontend work, install Node dependencies separately:
 
 ```bash
 pnpm install --dir /workspace/frontend
@@ -65,10 +71,9 @@ pnpm install --dir /workspace/docs
 
 One **dev** service includes:
 
-- ✅ Python 3.12 with project dependencies (installed at image build time via `uv`)
-- ✅ Node.js 24 and **pnpm** (global)
+- ✅ Python 3.12 with **uv**; backend dependencies installed on container create via `make install-dev` (system Python)
 - ✅ Workspace mounted at `/workspace`
-- ✅ Ports forwarded for Vite, docs, and the API (see `devcontainer.json`)
+- ✅ Ports forwarded for Vite and the API (see `devcontainer.json`)
 
 ### URLs
 
@@ -79,7 +84,7 @@ One **dev** service includes:
 
 ### Running backend and frontend
 
-Use **two terminals** inside the dev container (the compose service stays up with `sleep infinity`; you start the app processes yourself).
+Use **two terminals** inside the dev container (start the app processes yourself).
 
 **Backend** (from `backend/`):
 
@@ -120,8 +125,8 @@ The Vite dev server is configured to bind to `0.0.0.0` for Docker compatibility 
 /workspace/
 ├── .devcontainer/
 │   ├── devcontainer.json      # Dev container definition
-│   ├── docker-compose.yaml    # dev service + volumes
-│   └── Dockerfile.dev         # Python + Node + pnpm image
+│   ├── docker-compose.yaml    # dev service + uv cache volume
+│   └── Dockerfile.dev         # Python + uv base image
 ├── .vscode/                   # Editor settings
 ├── backend/                   # Python/FastAPI code (includes Makefile)
 ├── frontend/                  # Vite React/TypeScript code
@@ -138,7 +143,7 @@ Run **`make`** targets from **`/workspace/backend`** (the backend `Makefile` liv
 cd /workspace/backend
 
 # Setup and dependencies
-make install-dev       # Install Python dev dependencies (pip)
+make install-dev       # Install Python dev dependencies (system Python)
 
 # Code quality (uses Ruff)
 make format            # Format code with Ruff
@@ -183,7 +188,7 @@ pnpm add -D package-name   # Dev dependencies
 The project includes .vscode/settings.json with:
 
 - ✅ Ruff configured as formatter and linter
-- ✅ Python interpreter: devcontainer sets `python.defaultInterpreterPath` to `/usr/local/bin/python`
+- ✅ Python interpreter: `/usr/local/bin/python` (system Python, no venv)
 - ✅ Auto-formatting on save
 - ✅ Linting errors shown inline
 

@@ -9,9 +9,6 @@ backend/htmlcov/
 backend/.ruff_cache/
 backend/.mypy_cache/
 
-# Development files you identified
-backend/dev.sh
-
 # Development and build tools
 backend/Makefile
 

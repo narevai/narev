@@ -4,6 +4,7 @@
     "service": "dev",
     "workspaceFolder": "/workspace",
     "shutdownAction": "stopCompose",
+    "postCreateCommand": "make -C backend install-dev",
 
     "customizations": {
       "vscode": {
@@ -11,8 +12,6 @@
           "ms-python.python",
           "charliermarsh.ruff",
           "yzhang.markdown-all-in-one",
-          "DavidAnson.vscode-markdownlint",
-          "bierner.markdown-preview-github-styles",
           "ms-vscode.vscode-json",
           "ms-vscode.vscode-yaml"
         ],
@@ -47,11 +46,8 @@
       }
     },
 
-    "forwardPorts": [5174, 8000],
+    "forwardPorts": [8000],
     "portsAttributes": {
-      "5174": {
-        "label": "Documentation (Mintlify)"
-      },
       "8000": {
         "label": "Backend API"
       }

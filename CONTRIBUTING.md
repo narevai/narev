@@ -52,10 +52,10 @@ cd varne
 
 3. **Dependencies (first time or after lockfile changes)**
 
-   - The devcontainer **post-create** step runs `make install-dev` in `backend/` (system Python, no venv). If that did not run or failed, install manually:
+   - The devcontainer **post-create** step runs `make install` in `backend/` (system Python, no venv). If that did not run or failed, install manually:
 
 ```bash
-cd /workspace/backend && make install-dev
+cd /workspace/backend && make install
 ```
 
    - For frontend work, install Node dependencies separately:
@@ -71,7 +71,7 @@ pnpm install --dir /workspace/docs
 
 One **dev** service includes:
 
-- ✅ Python 3.12 with **uv**; backend dependencies installed on container create via `make install-dev` (system Python)
+- ✅ Python 3.12 with **uv**; backend dependencies installed on container create via `make install` (system Python)
 - ✅ Workspace mounted at `/workspace`
 - ✅ Ports forwarded for Vite and the API (see `devcontainer.json`)
 
@@ -111,9 +111,16 @@ pnpm run dev
 | Frontend | `cd /workspace/frontend && pnpm run dev`, open port 5173 |
 | Full stack | Backend + frontend running, `VITE_API_URL` set → confirm browser network calls hit `http://localhost:8000` |
 
-### `make up` and `make down`
+### Devcontainer lifecycle
 
-From **`/workspace/backend`**, `make up` and `make down` control `.devcontainer/docker-compose.yaml`. Use them when you need to (re)start or stop the Compose project from the host or from a shell **without** relying on the editor’s devcontainer attach. When you are already **inside** the rebuilt dev container, the **dev** service is usually already running; you still start **uvicorn** and **Vite** with the commands above.
+To rebuild or restart the dev container, use the editor: Command Palette → **Dev Containers: Rebuild Container**. To control the Compose project from the host:
+
+```bash
+docker compose -f .devcontainer/docker-compose.yaml up -d --build
+docker compose -f .devcontainer/docker-compose.yaml down
+```
+
+When you are already **inside** the rebuilt dev container, the **dev** service is usually already running; you still start **uvicorn** and **Vite** with the commands above.
 
 ### Frontend development notes
 
@@ -142,27 +149,20 @@ Run **`make`** targets from **`/workspace/backend`** (the backend `Makefile` liv
 ```bash
 cd /workspace/backend
 
-# Setup and dependencies
-make install-dev       # Install Python dev dependencies (system Python)
+make install   # Install Python dev dependencies (first time or after lockfile changes)
+make format    # Format code and auto-fix lint issues
+make check     # Verify formatting and linting (same as CI)
+make test      # Run pytest
+make dev       # Run backend server (uvicorn on port 8000)
+```
 
-# Code quality (uses Ruff)
-make format            # Format code with Ruff
-make fix               # Auto-fix linting issues
-make lint              # Check linting (no fixes)
-make check             # Check formatting + linting (CI-ready)
-make format-all        # Format + fix everything
+**Extra commands** (not in the Makefile):
 
-# Testing
-make test              # Run pytest
-make test-cov          # Run tests with coverage report
-
-# Development
-make dev               # Run backend server (uvicorn on port 8000)
-make up                # Start docker-compose stack (.devcontainer)
-make down              # Stop docker-compose stack
-
-# Cleanup
-make clean             # Remove coverage files, cache, etc.
+```bash
+uv run pytest --cov=. --cov-report=term-missing   # Tests with coverage
+uv tool run deptry .                              # Audit unused/missing dependencies
+rm -rf htmlcov .coverage .pytest_cache            # Clean test artifacts
+uv run python tests/mock_api/server.py            # Mock API for integration tests
 ```
 
 ### Frontend
@@ -199,15 +199,14 @@ The project includes .vscode/settings.json with:
 
 ```bash
 cd /workspace/backend
-make format-all   # Format and fix issues
-make check        # Verify everything passes
+make format   # Format and fix issues
+make check    # Verify everything passes
 ```
 
 1. Test your changes:
 
 ```bash
-make test         # Run tests
-make test-cov     # See coverage report
+make test
 ```
 
 ## Code Guidelines
@@ -238,9 +237,9 @@ test: add unit tests for billing sync
 1. Before submitting (from `backend/`):
 ```bash
 cd /workspace/backend
-make format-all    # Format and fix all issues
-make check         # Ensure formatting and linting pass
-make test-cov      # Run tests with coverage
+make format    # Format and fix all issues
+make check     # Ensure formatting and linting pass
+make test      # Run tests
 ```
 Your PR should:
 
@@ -255,20 +254,19 @@ Your PR should:
 
 - Rebuild: Command Palette → **Dev Containers: Rebuild Container**.
 
-Restart the Compose stack from **`backend/`**:
+Restart the Compose stack:
 
 ```bash
-cd /workspace/backend
-make down
-make up
+docker compose -f .devcontainer/docker-compose.yaml down
+docker compose -f .devcontainer/docker-compose.yaml up -d --build
 ```
 
 ### Code quality issues
 
 ```bash
 cd /workspace/backend
-make format-all    # Fix most issues automatically
-make check         # See what still needs fixing
+make format    # Fix most issues automatically
+make check     # See what still needs fixing
 ```
 
 By contributing, you agree to abide by our [Code of Conduct](./CODE_OF_CONDUCT.md).

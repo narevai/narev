@@ -31,11 +31,8 @@ jobs:
           source .venv/bin/activate
           uv sync --group dev
 
-      - name: Check Backend Format
-        run: ruff format --check .
-
-      - name: Lint Backend
-        run: ruff check .
+      - name: Check Backend
+        run: make check
 
       - name: Run Backend Tests with Coverage
         run: |

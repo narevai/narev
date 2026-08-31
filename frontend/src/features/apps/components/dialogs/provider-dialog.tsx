@@ -269,7 +269,7 @@ export function ProviderDialog({
       <div className='space-y-6'>
         {/* Basic Configuration */}
         <div className='space-y-4'>
-          <h3 className='font-semibold'>ThinOps Configuration</h3>
+          <h3 className='font-semibold'>Varne Configuration</h3>
           <div className='space-y-3'>
             {Object.entries(
               provider.configuration_schema?.standard_fields || {}

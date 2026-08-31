@@ -1,6 +1,6 @@
 ---
 title: 'Open source FOCUS translator'
-description: "Deploy the open source Narev Self-Hosted translator to unify cloud and AI provider billing data into the FOCUS specification for FinOps reporting."
+description: "Deploy the open source Varne translator to unify cloud and AI provider billing data into the FOCUS specification for FinOps reporting."
 ---
 
 <Tip>
@@ -9,7 +9,7 @@ description: "Deploy the open source Narev Self-Hosted translator to unify cloud
   of the FOCUS reporting across the Cloud and AI providers.
 </Tip>
 
-## What's `narevai/narev`?
+## What's `narevai/varne`?
 
 This project allows you to connect with cloud, AI, and SaaS vendors and unify your billing data. It helps with:
 
@@ -27,14 +27,14 @@ If you want to explore the feature set with sample data, start with demo mode:
 
 ```bash
 docker run -d \
-  --name narev-billing-demo \
+  --name varne-demo \
   -p 8000:8000 \
   -v $(pwd)/data:/app/data \
   -e DEMO="true" \
-  ghcr.io/narevai/narev:latest
+  ghcr.io/narevai/varne:latest
 ```
 
-`narevai/narev` runs at `http://localhost:8000`
+`narevai/varne` runs at `http://localhost:8000`
 
 **Demo mode includes:**
 
@@ -57,29 +57,29 @@ python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().d
 
 ```bash
 docker run -d \
-  --name narev-billing \
+  --name varne \
   -p 8000:8000 \
   -v $(pwd)/data:/app/data \
   -e ENCRYPTION_KEY="gAAAAABhZ_your_actual_generated_key_here" \
   -e ENVIRONMENT="production" \
-  ghcr.io/narevai/narev:latest
+  ghcr.io/narevai/varne:latest
 ```
 
 #### 3. Connect your providers
 
 Now that the Docker is running, add your cloud providers:
-**[Connect providers Guide](/oss/thinops/connect-providers)**
+**[Connect providers Guide](/oss/varne/connect-providers)**
 
 #### 4. Import billing data
 
 Sync your historical cost data:
-**[Sync providers Guide](/oss/thinops/getting-started/sync-providers)**
+**[Sync providers Guide](/oss/varne/getting-started/sync-providers)**
 
 #### 5. Advanced Deployment
 
-For production environments see advanced configuration: [Deployment Guide](/oss/thinops/getting-started/deployment)
+For production environments see advanced configuration: [Deployment Guide](/oss/varne/getting-started/deployment)
 
 ## Need Help?
 
 Get community support and ask questions:
-**[GitHub Discussions](https://github.com/narevai/narev/discussions)**
+**[GitHub Discussions](https://github.com/narevai/varne/discussions)**

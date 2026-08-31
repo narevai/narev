@@ -14,31 +14,31 @@
         "tab": "Open Source",
         "groups":[
           {
-            "group": "narevai/thin-ops",
+            "group": "narevai/varne",
             "icon": "docker",
             "pages": [
               {
                 "group": "Overview",
                 "pages": [
-                  "oss/thinops/index"
+                  "oss/varne/index"
                 ]
               },
               {
                 "group": "Getting Started",
                 "pages": [
-                  "oss/thinops/getting-started/deployment",
-                  "oss/thinops/getting-started/sync-providers",
-                  "oss/thinops/focus-specification"
+                  "oss/varne/getting-started/deployment",
+                  "oss/varne/getting-started/sync-providers",
+                  "oss/varne/focus-specification"
                 ]
               },
               {
                 "group": "Connect Providers",
                 "pages": [
-                  "oss/thinops/connect-providers/index",
-                  "oss/thinops/connect-providers/aws",
-                  "oss/thinops/connect-providers/azure",
-                  "oss/thinops/connect-providers/gcp",
-                  "oss/thinops/connect-providers/openai"
+                  "oss/varne/connect-providers/index",
+                  "oss/varne/connect-providers/aws",
+                  "oss/varne/connect-providers/azure",
+                  "oss/varne/connect-providers/gcp",
+                  "oss/varne/connect-providers/openai"
                 ]
               }
             ]
@@ -50,7 +50,7 @@
       "anchors": [
         {
           "anchor": "Github",
-          "href": "https://github.com/narevai/thin-ops",
+          "href": "https://github.com/narevai/varne",
           "icon": "github"
         }
       ]
@@ -71,7 +71,7 @@
   },
   "footer": {
     "socials": {
-      "github": "https://github.com/narevai/thin-ops"
+      "github": "https://github.com/narevai/varne"
     }
   }
 }

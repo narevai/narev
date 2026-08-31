@@ -54,7 +54,7 @@ class Settings(BaseSettings):
     log_file_path: str = Field(default="logs/app.log", description="Log file path")
 
     # API Configuration
-    api_title: str = Field(default="thin-ops Billing Analyzer", description="API title")
+    api_title: str = Field(default="Varne Billing Analyzer", description="API title")
     api_description: str = Field(
         default="FOCUS 1.2 compliant billing data analyzer for cloud and SaaS providers",
         description="API description",

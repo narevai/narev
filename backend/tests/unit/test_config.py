@@ -21,7 +21,7 @@ def test_get_settings_default():
 
         settings = Settings()
 
-        assert settings.api_title == "thin-ops Billing Analyzer"
+        assert settings.api_title == "Varne Billing Analyzer"
         assert settings.environment == "production"  # Real default from config
         assert settings.debug is False  # Default is False
         assert settings.database_type == "sqlite"

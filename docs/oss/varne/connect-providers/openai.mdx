@@ -1,7 +1,7 @@
 ---
 title: 'OpenAI'
 outline: deep
-description: "Use an OpenAI administrator API key to pull usage and billing data into Narev Self-Hosted and unify it with cloud spend in FOCUS format."
+description: "Use an OpenAI administrator API key to pull usage and billing data into Varne and unify it with cloud spend in FOCUS format."
 ---
 
 ## Prerequisites
@@ -24,7 +24,7 @@ description: "Use an OpenAI administrator API key to pull usage and billing data
 1. In the left sidebar, select **API keys**
 2. Click **Create new secret key**
 3. In the key creation form:
-   - **Name**: Provide a descriptive name (for example, "NarevAI Billing Access")
+   - **Name**: Provide a descriptive name (for example, "Varne Billing Access")
    - **Permissions**: Select **All** or **Custom** with permissions for:
      - `organization.billing.read`
      - `organization.usage.read`
@@ -41,15 +41,15 @@ description: "Use an OpenAI administrator API key to pull usage and billing data
 2. Save it in a secure location
 3. The key should have the format: `sk-admin-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`
 
-## Adding OpenAI Provider in NarevAI
+## Adding OpenAI Provider in Varne
 
 ### Step 1: Navigate to Connect
 
-1. In the NarevAI sidebar, under **Data Connections**, click **Connect**
+1. In the Varne sidebar, under **Data Connections**, click **Connect**
 2. You'll see the "Provider Integrations" page with available providers
 
 <Frame>
-<img src="/images/oss/thin-ops/screenshots/narevai-connections.png" alt="NarevAI Connections" />
+<img src="/images/oss/varne/screenshots/varne-connections.png" alt="Varne Connections" />
 </Frame>
 
 ### Step 2: Select OpenAI Provider
@@ -59,12 +59,12 @@ description: "Use an OpenAI administrator API key to pull usage and billing data
 3. The OpenAI configuration dialog opens
 
 <Frame>
-<img src="/images/oss/thin-ops/screenshots/narevai-openai-provider-dialog.png" alt="NarevAI OpenAI Provider Dialog" />
+<img src="/images/oss/varne/screenshots/varne-openai-provider-dialog.png" alt="Varne OpenAI Provider Dialog" />
 </Frame>
 
 ### Step 3: Configure OpenAI Provider
 
-#### Narev configuration
+#### Varne configuration
 
 **Provider Name** ✅ _Required_
 
@@ -100,8 +100,8 @@ description: "Use an OpenAI administrator API key to pull usage and billing data
 
 1. Review all configuration settings
 2. Click the **Connect** button
-3. NarevAI tests the connection to OpenAI API
-4. If successful, NarevAI adds the provider and marks it as "Connected"
+3. Varne tests the connection to OpenAI API
+4. If successful, Varne adds the provider and marks it as "Connected"
 5. You can now sync billing data from this OpenAI account
 
 **Connection Test includes:**
@@ -209,4 +209,4 @@ Once configured, the OpenAI provider will collect:
 - Time-series data: Daily aggregated metrics
 
 Data collection runs automatically based on your configured schedule and appears
-in the NarevAI dashboard after the first successful sync.
+in the Varne dashboard after the first successful sync.

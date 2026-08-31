@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# ThinOps API Test Script
+# Varne API Test Script
 # Simple bash script to test all main endpoints with curl
 
 set -e  # Exit on any error
@@ -22,7 +22,7 @@ FAILED=0
 
 # Helper functions
 print_header() {
-    echo -e "${BLUE}🧪 ThinOps API Test Suite${NC}"
+    echo -e "${BLUE}🧪 Varne API Test Suite${NC}"
     echo -e "${BLUE}🌐 Testing API at: $BASE_URL${NC}"
     echo -e "${BLUE}📅 Started at: $(date)${NC}"
     echo ""
@@ -311,7 +311,7 @@ main() {
 if [[ "$1" == "-h" || "$1" == "--help" ]]; then
     echo "Usage: $0 [BASE_URL]"
     echo ""
-    echo "Test ThinOps API endpoints"
+    echo "Test Varne API endpoints"
     echo ""
     echo "Arguments:"
     echo "  BASE_URL    Base API URL (default: http://localhost:8000)"

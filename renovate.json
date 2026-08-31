@@ -3,6 +3,7 @@
   "extends": [
     "config:recommended"
   ],
+  "baseBranches": ["main", "0.x"],
   "fetchChangeLogs": "off",
   "prBodyNotes": [],
   "prConcurrentLimit": 10,

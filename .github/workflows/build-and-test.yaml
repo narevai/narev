@@ -8,42 +8,6 @@ on:
   workflow_call:
 
 jobs:
-  frontend:
-    name: Frontend Build and Test
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./frontend
-    steps:
-      - uses: actions/checkout@v7
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v7
-        with:
-          node-version: "24"
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v6
-        with:
-          version: 10.34.5
-
-      - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Check Frontend Format
-        run: pnpm run format:check
-
-      - name: Lint Frontend
-        run: pnpm run lint
-
-      - name: Check Unused Code
-        run: pnpm run knip
-
-      - name: Build Frontend
-        env:
-          NODE_OPTIONS: "--max_old_space_size=4096"
-        run: pnpm run build
-
   backend:
     name: Backend Build and Test
     runs-on: ubuntu-latest

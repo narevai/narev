@@ -11,16 +11,11 @@ services:
       - "8000:8000"
     volumes:
       - ..:/workspace
-      - ../frontend/dist:/workspace/frontend/dist
-      - dev_frontend_node_modules:/workspace/frontend/node_modules
-      - dev_docs_node_modules:/workspace/docs/node_modules
       - pip_cache:/root/.cache/pip
       - backend_data:/workspace/backend/data
       - backend_logs:/workspace/backend/logs
 
 volumes:
-  dev_frontend_node_modules:
-  dev_docs_node_modules:
   pip_cache:
   backend_data:
   backend_logs:

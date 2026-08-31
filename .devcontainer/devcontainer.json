@@ -10,10 +10,6 @@
         "extensions": [
           "ms-python.python",
           "charliermarsh.ruff",
-          "ms-vscode.vscode-typescript-next",
-          "esbenp.prettier-vscode",
-          "bradlc.vscode-tailwindcss",
-          "dbaeumer.vscode-eslint",
           "yzhang.markdown-all-in-one",
           "DavidAnson.vscode-markdownlint",
           "bierner.markdown-preview-github-styles",
@@ -25,15 +21,6 @@
           "python.linting.pylintEnabled": false,
           "python.linting.flake8Enabled": false,
           "python.formatting.provider": "none",
-          "typescript.preferences.includePackageJsonAutoImports": "auto",
-          "typescript.suggest.autoImports": true,
-          "typescript.preferences.importModuleSpecifier": "relative",
-          "prettier.requireConfig": true,
-          "editor.formatOnSave": true,
-          "editor.defaultFormatter": "esbenp.prettier-vscode",
-          "editor.codeActionsOnSave": {
-            "source.fixAll.eslint": "explicit"
-          },
           "markdown.preview.fontSize": 14,
           "markdown.preview.lineHeight": 1.6,
           "markdownlint.config": {
@@ -48,20 +35,7 @@
               "source.organizeImports.ruff": "explicit"
             }
           },
-          "[typescript]": {
-            "editor.defaultFormatter": "esbenp.prettier-vscode"
-          },
-          "[typescriptreact]": {
-            "editor.defaultFormatter": "esbenp.prettier-vscode"
-          },
-          "[javascript]": {
-            "editor.defaultFormatter": "esbenp.prettier-vscode"
-          },
-          "[javascriptreact]": {
-            "editor.defaultFormatter": "esbenp.prettier-vscode"
-          },
           "[markdown]": {
-            "editor.defaultFormatter": "esbenp.prettier-vscode",
             "editor.wordWrap": "on",
             "editor.quickSuggestions": {
               "comments": "off",
@@ -73,18 +47,13 @@
       }
     },
 
-    "forwardPorts": [5173, 5174, 8000],
+    "forwardPorts": [5174, 8000],
     "portsAttributes": {
-      "5173": {
-        "label": "Frontend (Vite)"
-      },
       "5174": {
-        "label": "Documentation (VitePress)"
+        "label": "Documentation (Mintlify)"
       },
       "8000": {
         "label": "Backend API"
       }
-    },
-
-    "postCreateCommand": "pnpm install --dir /workspace/frontend && pnpm install --dir /workspace/docs"
+    }
 }

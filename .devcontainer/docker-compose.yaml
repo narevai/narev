@@ -3,10 +3,13 @@ services:
     build:
       context: ..
       dockerfile: .devcontainer/Dockerfile.dev
+
     command: sleep infinity
+
     volumes:
       - ..:/workspace:cached
       - uv_cache:/root/.cache/uv
+
     env_file:
       - path: ../.env
         required: false

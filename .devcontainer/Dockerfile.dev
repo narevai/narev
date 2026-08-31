@@ -15,7 +15,7 @@ RUN pip install --no-cache-dir uv
 ENV PYTHONPATH=/workspace/backend \
     PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    UV_SYSTEM_PYTHON=1 \
-    UV_LINK_MODE=copy
+    UV_LINK_MODE=copy \
+    UV_SYSTEM_PYTHON=true
 
 WORKDIR /workspace

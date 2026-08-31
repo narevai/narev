@@ -1,18 +1,18 @@
 .PHONY: install format check test dev
 
 install:
-	uv sync --group dev
+	uv sync --frozen
 
 format:
-	uv run ruff format .
-	uv run ruff check . --fix
+	ruff format .
+	ruff check . --fix
 
 check:
-	uv run ruff format --check .
-	uv run ruff check .
+	ruff format --check .
+	ruff check .
 
 test:
-	uv run pytest
+	pytest
 
 dev:
-	uv run uvicorn main:app --reload --host 0.0.0.0 --port 8000
+	uvicorn main:app --reload --host 0.0.0.0 --port 8000

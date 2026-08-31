@@ -1203,7 +1203,7 @@ requires-dist = [
     { name = "httpx2", specifier = "==2.12.0" },
     { name = "ibis-framework", extras = ["duckdb"], specifier = "==12.0.0" },
     { name = "loguru", specifier = "==0.7.3" },
-    { name = "nicegui", specifier = ">=3.16.0" },
+    { name = "nicegui", specifier = "==3.16.0" },
     { name = "pydantic", specifier = "==2.13.5" },
     { name = "pydantic-settings", specifier = "==2.15.0" },
     { name = "uvicorn", extras = ["standard"], specifier = "==0.52.4" },

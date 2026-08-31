@@ -1,7 +1,13 @@
-# Personal Cursor/VS Code workspace (Peacock colors, etc.)
 *.local.code-workspace
 
 .pnpm-store
+.ruff_cache/
+data/
+logs/
+temp/
+*.egg-info/
+build/
+dist/
 __pycache__/
 *.pyc
 *.pyo

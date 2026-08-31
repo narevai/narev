@@ -19,35 +19,22 @@ jobs:
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "tag=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
 
-      - name: Get frontend version
-        id: frontend_version
+      - name: Get package version
+        id: package_version
         run: |
-          FRONTEND_VERSION=$(jq -r '.version' frontend/package.json)
-          echo "frontend_version=$FRONTEND_VERSION" >> $GITHUB_OUTPUT
-
-      - name: Get backend version
-        id: backend_version
-        run: |
-          BACKEND_VERSION=$(grep '^version = ' backend/pyproject.toml | sed 's/version = "\(.*\)"/\1/')
-          echo "backend_version=$BACKEND_VERSION" >> $GITHUB_OUTPUT
+          PACKAGE_VERSION=$(grep '^version = ' pyproject.toml | sed 's/version = "\(.*\)"/\1/')
+          echo "package_version=$PACKAGE_VERSION" >> $GITHUB_OUTPUT
 
       - name: Verify version consistency
         run: |
           TAG_VERSION="${{ steps.get_version.outputs.version }}"
-          FRONTEND_VERSION="${{ steps.frontend_version.outputs.frontend_version }}"
-          BACKEND_VERSION="${{ steps.backend_version.outputs.backend_version }}"
+          PACKAGE_VERSION="${{ steps.package_version.outputs.package_version }}"
 
           echo "🏷️  Tag version: $TAG_VERSION"
-          echo "🎨 Frontend version: $FRONTEND_VERSION"
-          echo "⚙️  Backend version: $BACKEND_VERSION"
+          echo "⚙️  Package version: $PACKAGE_VERSION"
 
-          if [ "$TAG_VERSION" != "$FRONTEND_VERSION" ]; then
-            echo "❌ Tag version ($TAG_VERSION) doesn't match frontend package.json version ($FRONTEND_VERSION)"
-            exit 1
-          fi
-
-          if [ "$TAG_VERSION" != "$BACKEND_VERSION" ]; then
-            echo "❌ Tag version ($TAG_VERSION) doesn't match backend pyproject.toml version ($BACKEND_VERSION)"
+          if [ "$TAG_VERSION" != "$PACKAGE_VERSION" ]; then
+            echo "❌ Tag version ($TAG_VERSION) doesn't match pyproject.toml version ($PACKAGE_VERSION)"
             exit 1
           fi
 

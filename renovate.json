@@ -3,7 +3,10 @@
   "extends": [
     "config:recommended"
   ],
-  "baseBranches": ["main", "0.x"],
+  "baseBranches": [
+    "main",
+    "0.x"
+  ],
   "fetchChangeLogs": "off",
   "prBodyNotes": [],
   "prConcurrentLimit": 10,
@@ -11,37 +14,53 @@
   "packageRules": [
     {
       "description": "Disable all Python language version updates",
-      "matchPackageNames": ["python"],
+      "matchPackageNames": [
+        "python"
+      ],
       "enabled": false
     },
     {
-      "description": "NPM Manager (Frontend & Docs)",
-      "matchManagers": ["npm"],
-      "matchUpdateTypes": ["minor", "patch"],
-      "groupName": "npm dependencies",
-      "groupSlug": "npm-minor-patch",
-      "schedule": ["before 3am on monday"]
-    },
-    {
-      "description": "Python Managers (Backend Requirements & pyproject.toml)",
-      "matchManagers": ["pip_requirements", "pep621"],
-      "matchUpdateTypes": ["minor", "patch"],
+      "description": "Python Manager (pyproject.toml)",
+      "matchManagers": [
+        "pep621"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
       "groupName": "python dependencies",
       "groupSlug": "python-minor-patch",
-      "schedule": ["before 3am on monday"]
+      "schedule": [
+        "before 3am on monday"
+      ]
     },
     {
       "description": "Docker Managers (Dockerfile & Docker Compose)",
-      "matchManagers": ["dockerfile", "docker-compose"],
-      "matchUpdateTypes": ["minor", "patch"],
+      "matchManagers": [
+        "dockerfile",
+        "docker-compose"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
       "groupName": "docker updates",
       "groupSlug": "docker-minor-patch",
-      "schedule": ["before 3am on monday"]
+      "schedule": [
+        "before 3am on monday"
+      ]
     },
     {
       "description": "Keep major updates disabled as per original request",
-      "matchUpdateTypes": ["major"],
-      "matchManagers": ["npm", "pep621", "pip_requirements", "pip_setup", "pip-compile"],
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "matchManagers": [
+        "npm",
+        "pep621",
+        "pip_setup",
+        "pip-compile"
+      ],
       "enabled": false
     }
   ]

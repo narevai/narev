@@ -167,7 +167,7 @@ jobs:
       - name: Test built image
         run: |
           # Test the multi-arch image
-          docker run --rm -d --name test-container -p 8000:8000 -e DEMO=true -e ENVIRONMENT=production ${{ env.FULL_IMAGE_NAME }}:${{ steps.meta.outputs.version }}
+          docker run --rm -d --name test-container -p 8000:8000 -e ENVIRONMENT=production ${{ env.FULL_IMAGE_NAME }}:${{ steps.meta.outputs.version }}
           
           # Wait for container to be ready with timeout
           for i in {1..30}; do
@@ -176,7 +176,7 @@ jobs:
               docker logs test-container 2>&1 || echo "No logs available"
               exit 1
             fi
-            if curl -f http://localhost:8000/health >/dev/null 2>&1; then
+            if curl -f http://localhost:8000/api/v1/health >/dev/null 2>&1; then
               echo "Health check passed after $((i*2)) seconds"
               break
             fi

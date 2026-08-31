@@ -8,97 +8,28 @@ on:
   workflow_call:
 
 jobs:
-  frontend:
-    name: Frontend Build and Test
+  python:
+    name: Python Build and Test
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./frontend
-    steps:
-      - uses: actions/checkout@v7
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v7
-        with:
-          node-version: "24"
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v6
-        with:
-          version: 10.34.5
-
-      - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Check Frontend Format
-        run: pnpm run format:check
-
-      - name: Lint Frontend
-        run: pnpm run lint
-
-      - name: Check Unused Code
-        run: pnpm run knip
-
-      - name: Build Frontend
-        env:
-          NODE_OPTIONS: "--max_old_space_size=4096"
-        run: pnpm run build
-
-  backend:
-    name: Backend Build and Test
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./backend
     steps:
       - uses: actions/checkout@v7
 
       - name: Setup Python
         uses: actions/setup-python@v7
         with:
-          python-version: "3.12"
+          python-version: "3.14"
 
-      - name: Install Backend Dependencies
+      - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
           pip install uv
-          uv venv
-          echo "$GITHUB_WORKSPACE/backend/.venv/bin" >> $GITHUB_PATH
-          source .venv/bin/activate
-          uv pip install -r requirements.txt
-          uv pip install -r requirements-dev.txt
+          make install
 
-      - name: Check Backend Format
-        run: ruff format --check .
+      - name: Check
+        run: make check
 
-      - name: Lint Backend
-        run: ruff check .
-
-      - name: Run Backend Tests with Coverage
-        run: |
-          # Start mock server in background
-          python tests/mock_api/server.py &
-          SERVER_PID=$!
-
-          # Wait for server to start (check health endpoint)
-          echo "Waiting for mock server..."
-          for i in {1..30}; do
-            if curl -s http://localhost:8888/health > /dev/null 2>&1; then
-              echo "Mock server is ready!"
-              break
-            fi
-            sleep 1
-          done
-
-          # Run tests
-          pytest --cov=. --cov-report=term-missing --cov-report=xml --cov-report=html
-          TEST_RESULT=$?
-
-          # Always kill the server
-          kill $SERVER_PID || true
-
-          # Exit with test result
-          exit $TEST_RESULT
+      - name: Run Tests with Coverage
+        run: pytest --cov=src/varne --cov-report=term-missing --cov-report=xml --cov-report=html
 
   docs:
     name: Documentation Build and Test

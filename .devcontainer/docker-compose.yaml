@@ -1,26 +1,18 @@
 services:
   dev:
     build:
-      context: ../backend
-      dockerfile: ../.devcontainer/Dockerfile.dev
+      context: ..
+      dockerfile: .devcontainer/Dockerfile.dev
+
     command: sleep infinity
-    env_file:
-      - path: "../.env"
-        required: false
-    ports:
-      - "8000:8000"
+
     volumes:
-      - ..:/workspace
-      - ../frontend/dist:/workspace/frontend/dist
-      - dev_frontend_node_modules:/workspace/frontend/node_modules
-      - dev_docs_node_modules:/workspace/docs/node_modules
-      - pip_cache:/root/.cache/pip
-      - backend_data:/workspace/backend/data
-      - backend_logs:/workspace/backend/logs
+      - ..:/workspace:cached
+      - uv_cache:/root/.cache/uv
+
+    env_file:
+      - path: ../.env
+        required: false
 
 volumes:
-  dev_frontend_node_modules:
-  dev_docs_node_modules:
-  pip_cache:
-  backend_data:
-  backend_logs:
+  uv_cache:

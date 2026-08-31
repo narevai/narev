@@ -1,90 +1,33 @@
 {
-    "name": "varne Development",
-    "dockerComposeFile": "docker-compose.yaml",
-    "service": "dev",
-    "workspaceFolder": "/workspace",
-    "shutdownAction": "stopCompose",
-
-    "customizations": {
-      "vscode": {
-        "extensions": [
-          "ms-python.python",
-          "charliermarsh.ruff",
-          "ms-vscode.vscode-typescript-next",
-          "esbenp.prettier-vscode",
-          "bradlc.vscode-tailwindcss",
-          "dbaeumer.vscode-eslint",
-          "yzhang.markdown-all-in-one",
-          "DavidAnson.vscode-markdownlint",
-          "bierner.markdown-preview-github-styles",
-          "ms-vscode.vscode-json",
-          "ms-vscode.vscode-yaml"
-        ],
-        "settings": {
-          "python.defaultInterpreterPath": "/usr/local/bin/python",
-          "python.linting.pylintEnabled": false,
-          "python.linting.flake8Enabled": false,
-          "python.formatting.provider": "none",
-          "typescript.preferences.includePackageJsonAutoImports": "auto",
-          "typescript.suggest.autoImports": true,
-          "typescript.preferences.importModuleSpecifier": "relative",
-          "prettier.requireConfig": true,
-          "editor.formatOnSave": true,
-          "editor.defaultFormatter": "esbenp.prettier-vscode",
-          "editor.codeActionsOnSave": {
-            "source.fixAll.eslint": "explicit"
-          },
-          "markdown.preview.fontSize": 14,
-          "markdown.preview.lineHeight": 1.6,
-          "markdownlint.config": {
-            "MD033": false,
-            "MD041": false
-          },
-          "[python]": {
-            "editor.defaultFormatter": "charliermarsh.ruff",
-            "editor.formatOnSave": true,
-            "editor.codeActionsOnSave": {
-              "source.fixAll.ruff": "explicit",
-              "source.organizeImports.ruff": "explicit"
-            }
-          },
-          "[typescript]": {
-            "editor.defaultFormatter": "esbenp.prettier-vscode"
-          },
-          "[typescriptreact]": {
-            "editor.defaultFormatter": "esbenp.prettier-vscode"
-          },
-          "[javascript]": {
-            "editor.defaultFormatter": "esbenp.prettier-vscode"
-          },
-          "[javascriptreact]": {
-            "editor.defaultFormatter": "esbenp.prettier-vscode"
-          },
-          "[markdown]": {
-            "editor.defaultFormatter": "esbenp.prettier-vscode",
-            "editor.wordWrap": "on",
-            "editor.quickSuggestions": {
-              "comments": "off",
-              "strings": "off",
-              "other": "off"
-            }
-          }
-        }
+  "name": "varne Development",
+  "dockerComposeFile": "docker-compose.yaml",
+  "service": "dev",
+  "workspaceFolder": "/workspace",
+  "overrideCommand": false,
+  "shutdownAction": "stopCompose",
+  "postCreateCommand": "make install",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "charliermarsh.ruff",
+        "yzhang.markdown-all-in-one",
+        "ms-vscode.vscode-json",
+        "ms-vscode.vscode-yaml",
+        "ms-python.vscode-python-envs"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python"
       }
-    },
-
-    "forwardPorts": [5173, 5174, 8000],
-    "portsAttributes": {
-      "5173": {
-        "label": "Frontend (Vite)"
-      },
-      "5174": {
-        "label": "Documentation (VitePress)"
-      },
-      "8000": {
-        "label": "Backend API"
-      }
-    },
-
-    "postCreateCommand": "pnpm install --dir /workspace/frontend && pnpm install --dir /workspace/docs"
+    }
+  },
+  "forwardPorts": [
+    8000
+  ],
+  "portsAttributes": {
+    "8000": {
+      "label": "App (API + UI)"
+    }
+  }
 }

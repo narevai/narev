@@ -15,34 +15,10 @@
         "yzhang.markdown-all-in-one",
         "ms-vscode.vscode-json",
         "ms-vscode.vscode-yaml"
-      ],
-      "settings": {
-        "python.defaultInterpreterPath": "/usr/local/bin/python",
-        "[python]": {
-          "editor.defaultFormatter": "charliermarsh.ruff",
-          "editor.formatOnSave": true,
-          "editor.wordBasedSuggestions": "off",
-          "editor.suggest.showWords": false,
-          "editor.codeActionsOnSave": {
-            "source.fixAll.ruff": "explicit",
-            "source.organizeImports.ruff": "explicit"
-          }
-        },
-        "[markdown]": {
-          "editor.wordWrap": "on",
-          "editor.quickSuggestions": {
-            "comments": "off",
-            "strings": "off",
-            "other": "off"
-          }
-        },
-        "markdown.preview.fontSize": 14,
-        "markdown.preview.lineHeight": 1.6,
-        "markdownlint.config": {
-          "MD033": false,
-          "MD041": false
-        }
-      }
+      ]
+    },
+    "settings": {
+      "python.defaultInterpreterPath": "/usr/local/bin/python"
     }
   },
   "forwardPorts": [

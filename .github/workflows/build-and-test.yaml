@@ -23,12 +23,11 @@ jobs:
           python-version: "3.14"
 
       - name: Install Backend Dependencies
+        env:
+          UV_SYSTEM_PYTHON: "true"
         run: |
           python -m pip install --upgrade pip
           pip install uv
-          uv venv
-          echo "$GITHUB_WORKSPACE/backend/.venv/bin" >> $GITHUB_PATH
-          source .venv/bin/activate
           uv sync --group dev
 
       - name: Check Backend

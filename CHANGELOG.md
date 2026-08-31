@@ -5,6 +5,41 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.1] - 2026-08-31
+
+### Changed
+
+- Renamed the project from `thin-ops` to `varne` across packages, UI, API defaults, README, and contributor docs.
+- Renamed backend package from `thin-ops-api` to `varne-api` and frontend/docs packages to `varne` / `varne-docs`.
+- Moved Mintlify documentation from `docs/oss/thinops/` to `docs/oss/varne/` and updated nav paths, internal links, and GitHub references to `narevai/varne`.
+- Updated Docker image references to `ghcr.io/narevai/varne` and container names to `varne` / `varne-demo`.
+- Replaced remaining `Narev` / `NarevAI` product branding in the UI and docs with `Varne`.
+
+### Security
+
+- Bumped `cryptography` in the backend (48.0.1 → 50.0.0).
+
+### Dependencies
+
+- Updated GitHub Actions: `actions/setup-python` v6 → v7, `actions/stale` v10 → v11.
+
+**`backend/`**
+
+- `fastapi` 0.139.0 → 0.141.1
+- `uvicorn[standard]` 0.51.0 → 0.52.4
+- `sqlalchemy` 2.0.51 → 2.0.52
+- `pydantic` 2.13.4 → 2.13.5
+- `pydantic-settings` 2.14.2 → 2.15.0
+- `dlt[sqlalchemy,postgres,filesystem,az]` 1.29.0 → 1.30.0
+- `cryptography` 48.0.1 → 50.0.0
+- `google-cloud-bigquery` 3.42.2 → 3.44.0
+- `google-cloud-bigquery-storage` 2.39.0 → 2.41.0
+- `azure-storage-blob` 12.30.0 → 12.30.1
+
+**`frontend/`**
+
+- Lockfile updates across the toolchain, including `react` 19.2.7 → 19.2.8, `vite` 8.1.4 → 8.2.2, `axios` 1.18.1 → 1.20.0, `react-hook-form` 7.81.0 → 7.87.0, `zod` 4.4.3 → 4.5.4, and TanStack packages.
+
 ## [0.4.0] - 2026-07-18
 
 ### Changed

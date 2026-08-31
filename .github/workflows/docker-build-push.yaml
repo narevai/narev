@@ -2,6 +2,22 @@ name: Docker Build and Push
 
 on:
   workflow_call:
+    inputs:
+      ref:
+        description: "Git ref to checkout (defaults to triggering ref)"
+        required: false
+        type: string
+        default: ""
+      extra_tags:
+        description: "Additional docker/metadata-action tag lines"
+        required: false
+        type: string
+        default: ""
+      test_tag:
+        description: "Image tag for smoke test (defaults to metadata version)"
+        required: false
+        type: string
+        default: ""
   workflow_dispatch:
 
 env:
@@ -39,6 +55,8 @@ jobs:
           echo "PLATFORM_PAIR=${platform//\//-}" >> $GITHUB_ENV
 
       - uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.ref || github.ref }}
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v4
@@ -64,6 +82,7 @@ jobs:
             type=sha,prefix=git-
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
+            ${{ inputs.extra_tags }}
           flavor: |
             latest=${{ github.ref_type == 'tag' && !contains(github.ref_name, '-') && !startsWith(github.ref_name, 'v0.') }}
 
@@ -150,6 +169,7 @@ jobs:
             type=sha,prefix=git-
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
+            ${{ inputs.extra_tags }}
           flavor: |
             latest=${{ github.ref_type == 'tag' && !contains(github.ref_name, '-') && !startsWith(github.ref_name, 'v0.') }}
 
@@ -161,13 +181,13 @@ jobs:
 
       - name: Inspect image
         run: |
-          docker buildx imagetools inspect ${{ env.FULL_IMAGE_NAME }}:${{ steps.meta.outputs.version }}
+          docker buildx imagetools inspect ${{ env.FULL_IMAGE_NAME }}:${{ inputs.test_tag || steps.meta.outputs.version }}
 
       # Add health check test
       - name: Test built image
         run: |
           # Test the multi-arch image
-          docker run --rm -d --name test-container -p 8000:8000 -e ENVIRONMENT=production ${{ env.FULL_IMAGE_NAME }}:${{ steps.meta.outputs.version }}
+          docker run --rm -d --name test-container -p 8000:8000 -e ENVIRONMENT=production ${{ env.FULL_IMAGE_NAME }}:${{ inputs.test_tag || steps.meta.outputs.version }}
           
           # Wait for container to be ready with timeout
           for i in {1..30}; do

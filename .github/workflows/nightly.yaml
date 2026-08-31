@@ -1,0 +1,19 @@
+name: Nightly Build
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  docker:
+    uses: ./.github/workflows/docker-build-push.yaml
+    with:
+      extra_tags: |
+        type=raw,value=nightly
+        type=raw,value=nightly-{{date 'YYYYMMDD'}}
+        type=sha,prefix=nightly-git-
+      test_tag: nightly
+    secrets: inherit

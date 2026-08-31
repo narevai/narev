@@ -18,6 +18,9 @@ dependencies = [
     "httpx2==2.12.0",
 ]
 
+[tool.uv]
+constraint-dependencies = ["numpy>=2.3.3"]
+
 [tool.setuptools.packages.find]
 where = ["src"]
 

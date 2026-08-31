@@ -50,7 +50,7 @@
     "forwardPorts": [8000],
     "portsAttributes": {
       "8000": {
-        "label": "Backend API"
+        "label": "App (API + UI)"
       }
     }
 }

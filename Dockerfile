@@ -20,6 +20,6 @@ COPY backend/ ./
 
 EXPOSE $PORT
 HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
-    CMD curl --fail http://localhost:$PORT/health || exit 1
+    CMD curl --fail http://localhost:$PORT/api/v1/health || exit 1
 
 CMD ["sh", "-c", "uvicorn main:app --host $HOST --port $PORT --workers $WORKERS"]

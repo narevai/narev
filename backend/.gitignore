@@ -12,9 +12,6 @@ __pycache__/
 **/.DS_Store
 .DS_Store
 
-# DLT
-.dlt/data/*
-
 # Data files and logs
 data/
 logs/

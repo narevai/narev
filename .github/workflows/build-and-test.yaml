@@ -35,30 +35,7 @@ jobs:
         run: make check
 
       - name: Run Backend Tests with Coverage
-        run: |
-          # Start mock server in background
-          python tests/mock_api/server.py &
-          SERVER_PID=$!
-
-          # Wait for server to start (check health endpoint)
-          echo "Waiting for mock server..."
-          for i in {1..30}; do
-            if curl -s http://localhost:8888/health > /dev/null 2>&1; then
-              echo "Mock server is ready!"
-              break
-            fi
-            sleep 1
-          done
-
-          # Run tests
-          pytest --cov=. --cov-report=term-missing --cov-report=xml --cov-report=html
-          TEST_RESULT=$?
-
-          # Always kill the server
-          kill $SERVER_PID || true
-
-          # Exit with test result
-          exit $TEST_RESULT
+        run: pytest --cov=. --cov-report=term-missing --cov-report=xml --cov-report=html
 
   docs:
     name: Documentation Build and Test

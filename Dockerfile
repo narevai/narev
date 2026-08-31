@@ -12,9 +12,9 @@ ENV HOST=0.0.0.0
 ENV PORT=8000
 ENV WORKERS=1
 
-COPY backend/requirements.txt ./
-RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
+COPY backend/pyproject.toml backend/uv.lock ./
+RUN pip install --no-cache-dir --upgrade pip uv && \
+    uv export --frozen --no-dev --no-emit-project --no-hashes | uv pip install --system -r -
 
 COPY backend/ ./
 

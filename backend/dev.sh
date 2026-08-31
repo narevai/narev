@@ -7,7 +7,7 @@ ENV="${ENV:-dev}"
 # Install dev dependencies if not already installed
 if ! python -c "import ruff" 2>/dev/null; then
     echo "🚀 Installing development dependencies..."
-    pip install -r requirements-dev.txt
+    uv sync --group dev
 fi
 
 echo "🚀 Starting Simple FastAPI Test Server"

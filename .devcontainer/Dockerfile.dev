@@ -16,12 +16,11 @@ ENV PYTHONPATH=/workspace/backend \
     PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
 
-COPY requirements.txt requirements-dev.txt /tmp/
+COPY pyproject.toml uv.lock /tmp/
 
 RUN pip install uv && \
-    uv pip install --system \
-    -r /tmp/requirements.txt \
-    -r /tmp/requirements-dev.txt
+    uv export --frozen --no-emit-project --no-hashes --group dev --project /tmp \
+    | uv pip install --system -r -
 
 WORKDIR /workspace/backend
 

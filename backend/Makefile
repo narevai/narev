@@ -2,7 +2,7 @@
 
 # Install development dependencies
 install-dev:
-	pip install -r requirements-dev.txt
+	uv sync --group dev
 
 # Format code (separate formatting and linting)
 format:

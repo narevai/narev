@@ -4,6 +4,9 @@
 [![Latest tag](https://img.shields.io/github/v/tag/narevai/varne?label=latest)](https://github.com/narevai/varne/tags)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](LICENSE)
 
+## Development log
+1. [YouTube - Intro and plans for V1](https://youtube.com/live/obq8IIN0epY)
+
 ## Run
 
 ```bash

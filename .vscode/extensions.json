@@ -2,7 +2,6 @@
   "recommendations": [
     "charliermarsh.ruff",
     "ms-python.python",
-    "ms-python.vscode-pylance",
-    "LittleFoxTeam.vscode-python-test-adapter"
+    "ms-python.vscode-pylance"
   ]
 }

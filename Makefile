@@ -15,4 +15,4 @@ test:
 	pytest
 
 dev:
-	python -m varne.app
+	DEBUG=true LOG_LEVEL=DEBUG python -m varne.app

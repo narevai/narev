@@ -7,9 +7,7 @@ RUN apt-get update && \
 
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
-ENV HOST=0.0.0.0
 ENV PORT=8000
-ENV WORKERS=1
 
 COPY pyproject.toml uv.lock ./
 COPY src/ ./src/
@@ -21,4 +19,4 @@ EXPOSE $PORT
 HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
     CMD curl --fail http://localhost:$PORT/api/v1/health || exit 1
 
-CMD ["sh", "-c", "uvicorn varne.app:app --host $HOST --port $PORT --workers $WORKERS"]
+CMD ["python", "-m", "varne.app"]

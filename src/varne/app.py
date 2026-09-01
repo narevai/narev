@@ -5,7 +5,7 @@ from nicegui import app, ui
 
 from varne.api.v1 import router
 from varne.config import get_settings
-from varne.ui.page import register_pages
+from varne.ui.pages.dashboard import register_pages
 
 settings = get_settings()
 

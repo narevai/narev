@@ -18,9 +18,10 @@ register_pages()
 
 def main() -> None:
     ui.run(
-        host="0.0.0.0",
-        port=8000,
-        reload=True,
+        host=settings.host,
+        port=settings.port,
+        reload=settings.debug,
+        show=False,
     )
 
 

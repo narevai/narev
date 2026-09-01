@@ -15,4 +15,14 @@ logger.add(sys.stderr, level=settings.log_level)
 app.include_router(router, prefix="/api/v1")
 register_pages()
 
-ui.run(host="0.0.0.0", port=8000, reload=True)
+
+def main() -> None:
+    ui.run(
+        host="0.0.0.0",
+        port=8000,
+        reload=True,
+    )
+
+
+if __name__ in {"__main__", "__mp_main__"}:
+    main()

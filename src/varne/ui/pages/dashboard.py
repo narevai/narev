@@ -3,7 +3,15 @@ from nicegui import ui
 
 @ui.page("/")
 def page_dashboard() -> None:
-    with ui.column().classes("w-full items-center justify-center min-h-screen gap-4"):
-        ui.icon("cloud", size="4rem").classes("text-primary")
-        ui.label("Varne").classes("text-h3 font-bold")
-        # ui.label("FastAPI | NiceGUI | Ibis").classes("text-grey-7")
+    ui.label("Content")
+    [ui.label(f"Line {i}") for i in range(100)]
+
+    with ui.left_drawer(top_corner=True, bottom_corner=True, value=True) as drawer:
+        ui.label("left drawer")
+
+    with ui.header(elevated=True):
+        ui.button(icon="menu", on_click=drawer.toggle)
+        ui.label("header")
+
+    with ui.page_scroller(position="bottom-right", x_offset=20, y_offset=20):
+        ui.button("Scroll to Top")

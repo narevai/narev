@@ -8,5 +8,5 @@ def page_settings() -> None:
     # TODO
     layout = create_layout()
     with layout:
-        ui.label("Settings")
+        ui.label("Settings").classes("text-2xl font-bold")
         [ui.label(f"Settings {i}") for i in range(100)]

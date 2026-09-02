@@ -8,5 +8,5 @@ def page_dashboard() -> None:
     # TODO
     layout = create_layout()
     with layout:
-        ui.label("Dashboard")
+        ui.label("Dashboard").classes("text-2xl font-bold")
         [ui.label(f"Dashboard {i}") for i in range(100)]

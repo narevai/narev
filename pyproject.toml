@@ -73,6 +73,9 @@ show_missing = true
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 filterwarnings = []
+asyncio_mode = "auto"
+main_file = "src/varne/app.py"
+addopts = "-p nicegui.testing.user_plugin"
 
 [dependency-groups]
 dev = [

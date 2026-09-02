@@ -1,12 +1,12 @@
 from nicegui import ui
 
+from varne.ui.layout import create_layout
 
-def register_pages() -> None:
-    @ui.page("/")
-    def index() -> None:
-        with ui.column().classes(
-            "w-full items-center justify-center min-h-screen gap-4"
-        ):
-            ui.icon("cloud", size="4rem").classes("text-primary")
-            ui.label("Varne").classes("text-h3 font-bold")
-            ui.label("FastAPI | NiceGUI | Ibis").classes("text-grey-7")
+
+@ui.page("/")
+def page_dashboard() -> None:
+    # TODO
+    layout = create_layout()
+    with layout:
+        ui.label("Dashboard").classes("text-2xl font-bold")
+        [ui.label(f"Dashboard {i}") for i in range(100)]

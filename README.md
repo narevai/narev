@@ -6,7 +6,8 @@
 
 ## Development log
 1. [YouTube - Intro and plans for V1](https://youtube.com/live/obq8IIN0epY)
-2. [Youtube - Basic UI 1](https://youtube.com/live/50ahIxMfuJU?feature=share), [YouTube - Basic UI 2](https://www.youtube.com/watch?v=ZE-k7V4Ymk8)
+2. [YouTube - Basic UI 1](https://youtube.com/live/50ahIxMfuJU?feature=share), [YouTube - Basic UI 2](https://www.youtube.com/watch?v=ZE-k7V4Ymk8)
+3. [YouTube - Sidebar and Pages UI](https://youtube.com/live/f3AZsudTUNM?feature=share)
 
 ## Run
 

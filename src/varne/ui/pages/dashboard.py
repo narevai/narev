@@ -6,7 +6,9 @@ def page_dashboard() -> None:
     ui.label("Content")
     [ui.label(f"Line {i}") for i in range(100)]
 
-    with ui.left_drawer(top_corner=True, bottom_corner=True, value=True) as drawer:
+    with ui.left_drawer(top_corner=True, bottom_corner=True, value=True).props(
+        "breakpoint=768"
+    ) as drawer:
         ui.label("left drawer")
 
     with ui.header(elevated=True):

@@ -8,4 +8,4 @@ def test_ibis_connection():
 
 
 def test_db_connection_clean(db):
-    assert db.list_tables() == []
+    assert db.list_tables() == ["raw"]

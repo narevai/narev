@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 
 import httpx2 as httpx
 import ibis
+from loguru import logger
 
 from varne.db.schema import TableRaw, TableStaging
 from varne.providers.types import RowRaw, RowStaging
@@ -31,9 +32,11 @@ class ProviderService(ABC):
         raise NotImplementedError()
 
     def store_raw(self, rows: list[RowRaw]):
+        logger.debug(f"saving rows to {self.raw_table.name}")
         payload = [row.model_dump() for row in rows]
         self.db.insert(self.raw_table.name, payload)
 
     def store_staging(self, rows: list[RowStaging]):
+        logger.debug(f"saving rows to {self.staging_table.name}")
         payload = [row.model_dump() for row in rows]
         self.db.insert(self.staging_table.name, payload)

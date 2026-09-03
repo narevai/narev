@@ -1,6 +1,7 @@
 from datetime import UTC, datetime
 
 import ibis
+from loguru import logger
 
 from varne.providers.base import ProviderService
 from varne.providers.jsonplaceholder.client import JsonPlaceholderClient
@@ -25,3 +26,4 @@ class JsonPlaceholderService(ProviderService):
         self.store_raw(posts_rows)
         posts_transformed: list[RowStaging] = transform_posts(posts_payload)
         self.store_staging(posts_transformed)
+        logger.info("completed fetch and store for jsonplaceholder")

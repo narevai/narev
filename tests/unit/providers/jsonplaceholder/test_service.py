@@ -11,7 +11,8 @@ def test_store(db, http_client):
 
     service.fetch_and_store()
 
-    raw = db.table("raw").execute()
+    raw_count = db.table("raw").count().execute()
+    staging_count = db.table("staging").count().execute()
 
-    assert len(raw) == 1
-    assert raw.iloc[0]["provider"] == "jsonplaceholder"
+    assert raw_count == 1
+    assert staging_count == 100

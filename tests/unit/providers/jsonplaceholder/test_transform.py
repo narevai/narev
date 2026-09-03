@@ -21,5 +21,5 @@ def test_transform_posts():
 
     row = rows[0]
 
-    assert row["provider"] == "jsonplaceholder"
-    assert row["amount"] == len("abcdef")
+    assert row.id == "jsonplaceholder"
+    assert row.amount == len("abcdef")

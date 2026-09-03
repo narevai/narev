@@ -1,10 +1,10 @@
 from abc import ABC, abstractmethod
-from datetime import UTC, datetime
 
 import httpx2 as httpx
 import ibis
 
 from varne.db.schema import TableRaw, TableStaging
+from varne.providers.types import RowRaw, RowStaging
 
 
 class ProviderClient(ABC):
@@ -30,26 +30,10 @@ class ProviderService(ABC):
     def fetch_and_store(self) -> None:
         raise NotImplementedError()
 
-    def store_raw(self, payload: list[str]):
-        self.db.insert(
-            self.raw_table.name,
-            [
-                {
-                    "provider": "jsonplaceholder",
-                    "event_time": datetime.now(UTC),
-                    "payload": payload,
-                }
-            ],
-        )
+    def store_raw(self, rows: list[RowRaw]):
+        payload = [row.model_dump() for row in rows]
+        self.db.insert(self.raw_table.name, payload)
 
-    def store_staging(self, payload: list[str]):
-        self.db.insert(
-            self.staging_table.name,
-            [
-                {
-                    "provider": "jsonplaceholder",
-                    "event_time": datetime.now(UTC),
-                    "amount": payload,
-                }
-            ],
-        )
+    def store_staging(self, rows: list[RowStaging]):
+        payload = [row.model_dump() for row in rows]
+        self.db.insert(self.staging_table.name, payload)

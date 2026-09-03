@@ -11,4 +11,4 @@ class JsonPlaceholderClient(ProviderClient):
 
         response.raise_for_status()
 
-        return response.json()
+        return response.text

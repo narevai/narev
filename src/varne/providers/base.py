@@ -1,4 +1,3 @@
-import json
 from abc import ABC, abstractmethod
 from datetime import UTC, datetime
 
@@ -30,14 +29,14 @@ class ProviderService(ABC):
     def fetch_and_store(self) -> None:
         raise NotImplementedError()
 
-    def store(self, payload: list[dict]):
+    def store(self, payload: list[str]):
         self.db.insert(
             self.output_table.name,
             [
                 {
                     "provider": "jsonplaceholder",
                     "event_time": datetime.now(UTC),
-                    "payload": json.dumps(payload),
+                    "payload": payload,
                 }
             ],
         )

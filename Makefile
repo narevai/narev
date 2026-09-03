@@ -12,7 +12,7 @@ check:
 	ruff check src tests
 
 test:
-	pytest
+	pytest --record-mode=none --block-network
 
 dev:
 	DEBUG=true LOG_LEVEL=DEBUG python -m varne.app

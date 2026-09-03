@@ -1,4 +1,5 @@
 *.local.code-workspace
+.infisical.json
 
 .pnpm-store
 .ruff_cache/

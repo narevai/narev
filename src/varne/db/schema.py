@@ -36,7 +36,7 @@ class TableStaging(Table):
     @property
     def schema(self) -> ibis.schema:
         return ibis.schema(
-            {"id": dt.string, "event_time": dt.timestamp, "amount": dt.string}
+            {"id": dt.string, "event_time": dt.timestamp, "amount": dt.float}
         )
 
 

@@ -9,5 +9,5 @@ pytest --record-mode=once
 For a single test:
 
 ```bash
-pytest /tests/providers/jsonplaceholder/test_client.py --record-mode=once
+pytest /workspace/tests/unit/providers/jsonplaceholder/test_service.py --record-mode=once
 ```

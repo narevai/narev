@@ -6,7 +6,7 @@ class JsonPlaceholderClient(ProviderClient):
     def base_url(self) -> str:
         return "https://jsonplaceholder.typicode.com"
 
-    def fetch(self) -> list[dict]:
+    def fetch_posts(self) -> list[dict]:
         response = self.http.get(f"{self.base_url}/posts")
 
         response.raise_for_status()

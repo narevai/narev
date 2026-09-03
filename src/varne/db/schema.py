@@ -1,16 +1,39 @@
+from abc import ABC, abstractmethod
+
 import ibis
 import ibis.expr.datatypes as dt
 
 
-def get_schema_raw() -> ibis.schema:
-    return ibis.schema(
-        {"provider": dt.string, "event_time": dt.timestamp, "payload": dt.string}
-    )
+class Table(ABC):
+    @property
+    @abstractmethod
+    def name(self) -> str:
+        raise NotImplementedError()
+
+    @property
+    @abstractmethod
+    def schema(self) -> ibis.schema:
+        raise NotImplementedError()
+
+
+class TableRaw(Table):
+    @property
+    def name(self):
+        return "raw"
+
+    @property
+    def schema(self) -> ibis.schema:
+        return ibis.schema(
+            {"provider": dt.string, "event_time": dt.timestamp, "payload": dt.string}
+        )
+
+
+TABLES: list[type[Table]] = [TableRaw()]
 
 
 def create_tables(db: ibis.BaseBackend) -> None:
     existing_tables = set(db.list_tables())
 
-    if "raw" not in existing_tables:
-        schema = get_schema_raw()
-        db.create_table("raw", schema=schema)
+    for table in TABLES:
+        if table.name not in existing_tables:
+            db.create_table(table.name, schema=table.schema)

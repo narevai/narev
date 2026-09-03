@@ -8,4 +8,4 @@ def test_ibis_connection():
 
 
 def test_db_table_create(db):
-    assert db.list_tables() == ["raw"]
+    assert db.list_tables() == ["raw", "staging"]

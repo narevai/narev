@@ -28,7 +28,19 @@ class TableRaw(Table):
         )
 
 
-TABLES: list[type[Table]] = [TableRaw()]
+class TableStaging(Table):
+    @property
+    def name(self):
+        return "staging"
+
+    @property
+    def schema(self) -> ibis.schema:
+        return ibis.schema(
+            {"id": dt.string, "event_time": dt.timestamp, "amount": dt.string}
+        )
+
+
+TABLES: list[type[Table]] = [TableRaw(), TableStaging()]
 
 
 def create_tables(db: ibis.BaseBackend) -> None:
